@@ -4,7 +4,7 @@ using System.Text;
 
 namespace BoxingTire.Domain.Entities
 {
-    class Role
+   public class Role
     {
         int Id { get; set; }
 
