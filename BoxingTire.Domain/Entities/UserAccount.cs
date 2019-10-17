@@ -6,13 +6,13 @@ namespace BoxingTire.Domain.Entities
 {
   public  class UserAccount
     {
-        Guid Id { get; set; }
-        string Name  { get; set; }
-        string EmailAddress { get; set; }
-        string Password { get; set; }
-        bool IsEnable { get; set; }
-      int Role { get; set; }
-        DateTime UpdatedOn{ get; set; }
+      public  int Id { get; set; }
+        public string Name  { get; set; }
+        public string EmailAddress { get; set; }
+        public string Password { get; set; }
+        public bool IsEnable { get; set; }
+        public int Role { get; set; }
+        public DateTime UpdatedOn{ get; set; }
 
     }
 }
