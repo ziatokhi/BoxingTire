@@ -11,6 +11,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Doc", "Doc", "{DAA3DA63-B2B
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BoxingTire.Domain", "BoxingTire.Domain\BoxingTire.Domain.csproj", "{188553CA-387B-4D79-88D8-E644F2115F94}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{C2235F39-CF21-40D0-BD55-DEA9E700A9A0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -26,7 +28,8 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{188553CA-387B-4D79-88D8-E644F2115F94} = {40902547-F7F0-45D0-9C38-5B5420226F19}
+		{188553CA-387B-4D79-88D8-E644F2115F94} = {C2235F39-CF21-40D0-BD55-DEA9E700A9A0}
+		{C2235F39-CF21-40D0-BD55-DEA9E700A9A0} = {40902547-F7F0-45D0-9C38-5B5420226F19}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E9E4CB72-65F0-45DF-9F71-3484FED6E967}
