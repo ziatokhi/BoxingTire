@@ -14,5 +14,8 @@ namespace BoxingTire.Domain.Entities
         public int Role { get; set; }
         public DateTime UpdatedOn{ get; set; }
 
+        // one time login for user
+        public bool IsLogin { get; set; }
+
     }
 }
