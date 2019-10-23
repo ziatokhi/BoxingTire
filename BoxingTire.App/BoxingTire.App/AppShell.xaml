@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="BoxingTire.App.AppShell"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:pages="clr-namespace:BoxingTire.App.Views"
+    Title="BoxingTire.App"
+    mc:Ignorable="d">
+
+    <!--
+        Styles and Resources
+    -->
+
+    <ShellItem>
+        <ShellContent>
+            <pages:ChallengeList />
+        </ShellContent>
+    </ShellItem>
+</Shell>

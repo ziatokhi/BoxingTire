@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="BoxingTire.App.Views.Login"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:vm="clr-namespace:BoxingTire.App.ViewModels"
+    mc:Ignorable="d">
+    <ContentPage.BindingContext>
+        <vm:LoginViewModel />
+    </ContentPage.BindingContext>
+    <Grid Padding="15">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
+        <Label
+            Grid.Row="1"
+            Grid.Column="0"
+            HorizontalTextAlignment="Center"
+            Text="Welcome" />
+
+
+        <Entry
+            x:Name="txtUser"
+            Grid.Row="3"
+            Grid.Column="0"
+            HorizontalOptions="FillAndExpand"
+            Keyboard="Email"
+            Placeholder="User Name"
+            Text="{Binding UserName}" />
+
+
+
+
+        <Entry
+            x:Name="txtPwd"
+            Grid.Row="4"
+            Grid.Column="0"
+            HorizontalOptions="FillAndExpand"
+            IsPassword="True"
+            Placeholder="Password"
+            Text="{Binding Password}" />
+
+
+        <Button
+            x:Name="btnLogin"
+            Grid.Row="5"
+            Grid.Column="0"
+            Command="{Binding LoginCommand}"
+            Text="LOGIN" />
+        <ActivityIndicator IsRunning="True" IsVisible="{Binding IsBusy}" />
+
+    </Grid>
+
+</ContentPage>

@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="BoxingTire.App.Views.ChallengeList"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:vm="clr-namespace:BoxingTire.App.ViewModels"
+    Title="Challenges Category"
+    BackgroundColor="DarkBlue"
+    mc:Ignorable="d">
+    <ContentPage.BindingContext>
+        <vm:ChallengeListViewModel />
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <StackLayout>
+
+            <CollectionView
+                x:Name="CvList"
+                HorizontalOptions="FillAndExpand"
+                ItemSizingStrategy="MeasureAllItems"
+                ItemsSource="{Binding ChallengeCategoryList}"
+                VerticalOptions="FillAndExpand">
+
+                <CollectionView.ItemsLayout>
+
+                    <GridItemsLayout Orientation="Vertical" Span="1" />
+                </CollectionView.ItemsLayout>
+                <CollectionView.EmptyView>
+                    <Label Text="Empty" />
+                </CollectionView.EmptyView>
+
+                <CollectionView.HeaderTemplate>
+                    <DataTemplate>
+                        <Label>asdasd</Label>
+                    </DataTemplate>
+                </CollectionView.HeaderTemplate>
+
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+
+                        <Frame Padding="5" BackgroundColor="Black">
+                            <Frame Style="{DynamicResource frList}">
+                                <Grid Padding="10">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition />
+                                        <RowDefinition />
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+
+                                        <ColumnDefinition />
+
+
+                                    </Grid.ColumnDefinitions>
+                                    <Image
+                                        Grid.Row="0"
+                                        Grid.RowSpan="2"
+                                        Grid.Column="0"
+                                        Margin="-10"
+                                        Aspect="Fill"
+                                        HorizontalOptions="Fill"
+                                        Source="{Binding ImgSrc}"
+                                        VerticalOptions="FillAndExpand" />
+
+                                    <Label
+                                        Grid.Row="0"
+                                        Grid.RowSpan="2"
+                                        Grid.Column="0"
+                                        FontAttributes="Bold"
+                                        FontSize="Title"
+                                        Text="{Binding Name}"
+                                        TextColor="{DynamicResource primaryTextColor}"
+                                        VerticalTextAlignment="Center" />
+                                    <Grid.GestureRecognizers>
+
+                                        <TapGestureRecognizer Command="{Binding BindingContext.CategoryCommand, Source={x:Reference Name=CvList}}" CommandParameter="{Binding Id}" />
+                                    </Grid.GestureRecognizers>
+                                </Grid>
+                            </Frame>
+                        </Frame>
+
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+        </StackLayout>
+
+    </ContentPage.Content>
+</ContentPage>
