@@ -21,6 +21,7 @@ namespace BoxingTire.App.Views
             InitializeComponent();
 
             vm = new DeviceServicesViewModel(device);
+
             BindingContext = vm;
 
             ServicesList.ItemSelected += ServicesList_ItemSelected;
