@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="BoxingTire.App.Views.AccelerometerPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:c="clr-namespace:BoxingTire.App.Services.Helpers"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <c:DoubleToStringConverter x:Key="DoubleToStringConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ScrollView>
+        <StackLayout>
+
+            <Label FontSize="Small" Text="X axis" />
+            <Label FontSize="Large" Text="{Binding X, Converter={StaticResource DoubleToStringConverter}, StringFormat='{0}'}" />
+            <Label FontSize="Small" Text="Y axis" />
+            <Label FontSize="Large" Text="{Binding Y, Converter={StaticResource DoubleToStringConverter}, StringFormat='{0}'}" />
+            <Label FontSize="Small" Text="Z axis" />
+            <Label FontSize="Large" Text="{Binding Z, Converter={StaticResource DoubleToStringConverter}, StringFormat='{0}'}" />
+            <Label FontSize="Small" Text="Updated every" />
+            <Label FontSize="Large" Text="{Binding AccelerometerPeriod, Converter={StaticResource DoubleToStringConverter}, StringFormat='{0} milliseconds'}" />
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

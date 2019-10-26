@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="BoxingTire.App.Views.DeviceListPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Title="Micro:bit BLE (Beta)"
+    mc:Ignorable="d">
+    <StackLayout>
+
+
+
+        <Label
+            FontSize="Large"
+            HorizontalTextAlignment="Center"
+            Text="Pick your Micro:bit" />
+        <ListView
+            x:Name="DevicesList"
+            Header="Detected Devices"
+            ItemsSource="{Binding DetectedDevices}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <TextCell Detail="{Binding State}" Text="{Binding Name}" />
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <StackLayout Orientation="Horizontal">
+            <Button Command="{Binding ReScanCommand}" Text="Re-Scan" />
+            <Label
+                FontSize="Medium"
+                HorizontalOptions="EndAndExpand"
+                IsVisible="{Binding IsScanning}"
+                Text="Scanning for devices"
+                VerticalTextAlignment="Center" />
+            <ActivityIndicator
+                IsRunning="true"
+                IsVisible="{Binding IsScanning}"
+                VerticalOptions="Center" />
+        </StackLayout>
+    </StackLayout>
+    <ContentPage.ToolbarItems>
+        <ToolbarItem
+            x:Name="InstructionsButton"
+            Name="Instructions"
+            Order="Primary"
+            Priority="0" />
+    </ContentPage.ToolbarItems>
+</ContentPage>

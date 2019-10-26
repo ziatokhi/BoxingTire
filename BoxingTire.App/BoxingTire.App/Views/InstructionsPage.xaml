@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="BoxingTire.App.Views.InstructionsPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Title="Instructions"
+    mc:Ignorable="d">
+    <ScrollView>
+        <StackLayout>
+
+            <Button
+                x:Name="OpenMicrobitLinkButton"
+                HorizontalOptions="FillAndExpand"
+                Text="What is the Micro:bit" />
+            <Label FontSize="Large" Text="Hex file &amp; Pairing" />
+            <Label FontSize="Small" Text="1) Any hex file that initializes the bluetooth services you need can be used." />
+            <Label FontSize="Small" Text="2) The Hex file and pairing instructions provided by Martin Woolley works well with this app: http://blog.bluetooth.com/bbc-microbit/ ." />
+            <Button
+                x:Name="OpenHexLinkButton"
+                HorizontalOptions="FillAndExpand"
+                Text="Open link in browser" />
+            <Label FontSize="Large" Text="Known issues" />
+            <Label FontSize="Small" Text="- Bearing value in Magnetometer doesn't seem to work." />
+            <Label FontSize="Small" Text="- Issues when multiple services are opened and closed in rapid succession." />
+            <Label FontSize="Large" Text="Contributing Code/Bug Fixes" />
+            <Label FontSize="Small" Text="The source code for this application can be found at https://github.com/sumitgouthaman/microbit-ble-mobile. Bug Fixes and feature additions are welcome." />
+            <Button
+                x:Name="OpenGithubLinkButton"
+                HorizontalOptions="FillAndExpand"
+                Text="Github Repo" />
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

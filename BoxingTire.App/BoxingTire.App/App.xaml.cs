@@ -14,12 +14,18 @@ namespace BoxingTire.App
             InitializeComponent();
 
             //      DependencyService.Register<MockDataStore>();
-               MainPage = new AppShell();
+            //   MainPage = new AppShell();
 
             //   MainPage = new Challenge01();
             //  MainPage = new MasterPageMenu();
 
-          //  MainPage = new Login() ;
+            //  MainPage = new Login() ;
+
+
+
+            // MainPage = new AccelerometerPage(x.);
+
+            MainPage = new DeviceListPage();
         }
 
         protected override void OnStart()

@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="BoxingTire.App.Views.DeviceServicesPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Title="{Binding DeviceName}"
+    mc:Ignorable="d">
+    <ScrollView>
+        <StackLayout>
+
+            <StackLayout Orientation="Horizontal">
+                <StackLayout>
+                    <Label Text="{Binding DeviceId, StringFormat='ID: {0}'}" />
+                    <Label Text="{Binding DeviceConnectionState}" />
+                </StackLayout>
+                <ActivityIndicator HorizontalOptions="EndAndExpand" IsRunning="{Binding IsBusy}" />
+            </StackLayout>
+            <Button
+                Command="{Binding ToggleConnectionCommand}"
+                HorizontalOptions="FillAndExpand"
+                Text="{Binding ToggleConnectionString}" />
+            <ListView x:Name="ServicesList" ItemsSource="{Binding DetectedServices}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <TextCell Detail="{Binding ServiceDescription}" Text="{Binding ServiceName}" />
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>
