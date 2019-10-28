@@ -33,8 +33,12 @@ namespace BoxingTire.App.Views
                 return;
 
             IMicrobitServiceProvider serviceProvider = e.SelectedItem as IMicrobitServiceProvider;
+
+          App.IMicrobitServiceProvider_Active = serviceProvider;
+
+          //  App.Current.MainPage = new AppShell();
             await Navigation.PushAsync(serviceProvider.GetServiceInstance().Page);
-            ((ListView)sender).SelectedItem = null;
+           ((ListView)sender).SelectedItem = null;
         }
     }
 }

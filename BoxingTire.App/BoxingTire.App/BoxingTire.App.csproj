@@ -6,18 +6,35 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Services\AMicrobitService.cs" />
+    <Compile Remove="Services\DeviceInformationService.cs" />
+    <Compile Remove="Services\Helpers\MicrobitServiceProvide.cs" />
+    <Compile Remove="Services\IdToServiceProviderMappingProvider.cs" />
+    <Compile Remove="Services\IMicrobitService.cs" />
+    <Compile Remove="Services\ServiceIds.cs" />
+    <Compile Remove="ViewModels\DeviceServicesViewModel.cs" />
+    <Compile Remove="ViewModels\DevicesViewModel.cs" />
+    <Compile Remove="ViewModels\IMicrobitServiceProvider.cs" />
+    <Compile Remove="Views\AccelerometerPage.xaml.cs" />
     <Compile Remove="Views\ble.xaml.cs" />
+    <Compile Remove="Views\DeviceInformationPage.xaml.cs" />
+    <Compile Remove="Views\DeviceServicesPage.xaml.cs" />
+    <Compile Remove="Views\InstructionsPage.xaml.cs" />
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Remove="Views\AccelerometerPage.xaml" />
     <EmbeddedResource Remove="Views\ble.xaml" />
+    <EmbeddedResource Remove="Views\DeviceInformationPage.xaml" />
+    <EmbeddedResource Remove="Views\DeviceServicesPage.xaml" />
+    <EmbeddedResource Remove="Views\InstructionsPage.xaml" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.CSharp" Version="4.6.0" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="3.0.0" />
     <PackageReference Include="Newtonsoft.Json" Version="12.0.2" />
-    <PackageReference Include="Plugin.BLE" Version="1.3.0" />
+    <PackageReference Include="Plugin.BLE" Version="2.1.1" />
     <PackageReference Include="Plugin.Permissions" Version="3.0.0.12" />
     <PackageReference Include="Xamarin.Forms" Version="4.2.0.709249" />  
     <PackageReference Include="Xamarin.Essentials" Version="1.2.0" />
@@ -30,7 +47,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Update="Views\AccelerometerPage.xaml">
+    <EmbeddedResource Update="test.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\Challenge01.xaml">
@@ -39,16 +56,7 @@
     <EmbeddedResource Update="Views\ChallengeList.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\DeviceInformationPage.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
     <EmbeddedResource Update="Views\DeviceListPage.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Views\DeviceServicesPage.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Views\InstructionsPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\Login.xaml">

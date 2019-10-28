@@ -29,13 +29,13 @@ namespace BoxingTire.App.Services
    //             service,
    //             TemperatureService.GetInstance)},
 
-			//// Accelerometer Service
-			//{ServiceIds.AccelerometerServiceId, (service) => new MicrobitServiceProvider(
-   //             "Accelerometer Service",
-   //             "X, Y, Z axis acceleration values",
-   //             ServiceIds.AccelerometerServiceId,
-   //             service,
-   //             AccelerometerService.GetInstance)},
+			// Accelerometer Service
+			{ServiceIds.AccelerometerServiceId, (service) => new MicrobitServiceProvider(
+                "Accelerometer Service",
+                "X, Y, Z axis acceleration values",
+                ServiceIds.AccelerometerServiceId,
+                service,
+                AccelerometerService.GetInstance)},
 
 			//// Button Service
 			//{ServiceIds.ButtonServiceId, (service) => new MicrobitServiceProvider(

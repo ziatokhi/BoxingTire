@@ -62,7 +62,10 @@ namespace BoxingTire.App.ViewModels
 
         private void Login_Click(object obj)
         {
-             
+            IsBusy = true;
+
+
+
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

@@ -6,10 +6,15 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
-namespace BoxingTire.App.Services
+using Xamarin.Forms;
+using Xamarin.Forms.Xaml;
+
+namespace BoxingTire.App
 {
-   public abstract class AccelerometerService
+    [XamlCompilation(XamlCompilationOptions.Compile)]
+    public partial class test : ContentPage
     {
         public static Guid DeviceInformationServiceId = new Guid("0000180A00001000800000805F9B34FB");
         public static Guid TemperatureServiceId = new Guid("E95D6100251D470AA062FA1922DFA9A8");
@@ -21,9 +26,9 @@ namespace BoxingTire.App.Services
 
         private static Guid AccelerometerCharacteristicId = new Guid("E95DCA4B251D470AA062FA1922DFA9A8");
         private static Guid AccelerometerPeriodCharacteristicId = new Guid("E95DFB24251D470AA062FA1922DFA9A8");
-
+     
         private IList<ICharacteristic> CharacteristicsToUpdate = new List<ICharacteristic>();
-        private HashSet<Guid> SeenCharacteristics = new HashSet<Guid>();
+        private HashSet<Guid> SeenCharacteristics= new HashSet<Guid>();
         private double _x = double.NaN;
         public Double X
         {
@@ -34,7 +39,7 @@ namespace BoxingTire.App.Services
             set
             {
                 _x = value;
-                //   OnPropertyChanged();
+             //   OnPropertyChanged();
             }
         }
 
@@ -48,7 +53,7 @@ namespace BoxingTire.App.Services
             set
             {
                 _y = value;
-                //    OnPropertyChanged();
+            //    OnPropertyChanged();
             }
         }
 
@@ -62,7 +67,7 @@ namespace BoxingTire.App.Services
             set
             {
                 _z = value;
-                //     OnPropertyChanged();
+           //     OnPropertyChanged();
             }
         }
 
@@ -76,24 +81,42 @@ namespace BoxingTire.App.Services
             set
             {
                 _accelerometerPeriod = value;
-                //   OnPropertyChanged();
+             //   OnPropertyChanged();
             }
         }
 
-       
-
-        public   AccelerometerService()
+        public test()
         {
+            InitializeComponent();
+        }
+
+        private void Button_Clicked(object sender, EventArgs e)
+        {
+           // b();
 
             LoadCharacteristics();
         }
 
+        async void b()
+        {
+            var b = Plugin.BLE.CrossBluetoothLE.Current;
+
+            var p = b.Adapter.GetSystemConnectedOrPairedDevices().FirstOrDefault();
+            await b.Adapter.ConnectToDeviceAsync(p);
+            var s = await p.GetServicesAsync();
+
+            var a = s.Where(x => x.Id == AccelerometerServiceId).FirstOrDefault();
+
+            var c = await a.GetCharacteristicsAsync();
+        }
 
         public async void LoadCharacteristics()
         {
-            
-            
-            var s = await App._microbit.GetServicesAsync();
+            var b = Plugin.BLE.CrossBluetoothLE.Current;
+
+            var p = b.Adapter.GetSystemConnectedOrPairedDevices().FirstOrDefault();
+            await b.Adapter.ConnectToDeviceAsync(p);
+            var s = await p.GetServicesAsync();
 
             var ServiceInstance = s.Where(x => x.Id == AccelerometerServiceId).FirstOrDefault();
 
@@ -117,19 +140,19 @@ namespace BoxingTire.App.Services
                             short rawY = ConversionHelpers.ByteArrayToShort16BitLittleEndian(new byte[] { rawBytes[2], rawBytes[3] });
                             short rawZ = ConversionHelpers.ByteArrayToShort16BitLittleEndian(new byte[] { rawBytes[4], rawBytes[5] });
 
-                            X = ((double)rawX) / 1000.0;
-                            Y = ((double)rawY) / 1000.0;
-                            Z = ((double)rawZ) / 1000.0;
+                                X = ((double)rawX) / 1000.0;
+                                 Y = ((double)rawY) / 1000.0;
+                                 Z = ((double)rawZ) / 1000.0;
 
-                            Debug.Write($"{X} Y{Y} Z{Z}");
+                                Debug.Write($"{X} Y{Y} Z{Z}");
                         }
-                        catch (Exception ex)
+                        catch(Exception ex)
                         {
 
 
                         }
                     };
-                    //   MarkCharacteristicForUpdate(characteristic);
+                 //   MarkCharacteristicForUpdate(characteristic);
                     await characteristic.StartUpdatesAsync();
                     //await Task.Delay(500);
                 }
@@ -150,8 +173,39 @@ namespace BoxingTire.App.Services
                 }
             }
 
-            // StartUpdates();
-
+           // StartUpdates();
+           
         }
+
+        public void MarkCharacteristicForUpdate(ICharacteristic characteristic)
+        {
+            if (characteristic == null || SeenCharacteristics.Contains(characteristic.Id))
+                return;
+
+            CharacteristicsToUpdate.Add(characteristic);
+        }
+        public async void StartUpdates()
+        {
+            foreach (ICharacteristic characteristic in CharacteristicsToUpdate.ToList())
+            {
+                await characteristic.StartUpdatesAsync();
+
+                // This is due to a bug in the BLE library: https://github.com/xabre/xamarin-bluetooth-le/issues/64
+                await Task.Delay(500);
+            }
+        }
+
+        public async void StopUpdates()
+        {
+            foreach (ICharacteristic characteristic in CharacteristicsToUpdate)
+            {
+                await characteristic.StopUpdatesAsync();
+
+                // This is due to a bug in the BLE library: https://github.com/xabre/xamarin-bluetooth-le/issues/64
+                await Task.Delay(300);
+            }
+        }
+
+      
     }
 }

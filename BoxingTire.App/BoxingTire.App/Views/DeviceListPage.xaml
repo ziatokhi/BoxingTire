@@ -5,45 +5,83 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:d="http://xamarin.com/schemas/2014/forms/design"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    Title="Micro:bit BLE (Beta)"
+    xmlns:vm="clr-namespace:BoxingTire.App.ViewModels"
     mc:Ignorable="d">
-    <StackLayout>
+    <ContentPage.BindingContext>
+        <vm:DeviceListViewModel />
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <StackLayout>
+
+            <CollectionView
+                x:Name="CvList"
+                HorizontalOptions="FillAndExpand"
+                ItemSizingStrategy="MeasureAllItems"
+                ItemsSource="{Binding DeviceList}"
+                VerticalOptions="FillAndExpand">
+
+                <CollectionView.ItemsLayout>
+
+                    <GridItemsLayout Orientation="Vertical" Span="1" />
+                </CollectionView.ItemsLayout>
+                <CollectionView.EmptyView>
+                    <Label>No Bluetooth Device Found!</Label>
+                </CollectionView.EmptyView>
+
+                <CollectionView.HeaderTemplate>
+                    <DataTemplate>
+                        <Label>asdasd</Label>
+                    </DataTemplate>
+                </CollectionView.HeaderTemplate>
+
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+
+                        <Frame Padding="5" BackgroundColor="Black">
+                            <Frame Style="{DynamicResource frList}">
+                                <Grid Padding="10">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition />
+                                        <RowDefinition />
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+
+                                        <ColumnDefinition />
 
 
+                                    </Grid.ColumnDefinitions>
+                                    <Image
+                                        Grid.Row="0"
+                                        Grid.RowSpan="2"
+                                        Grid.Column="0"
+                                        Margin="-10"
+                                        Aspect="Fill"
+                                        HorizontalOptions="Fill"
+                                        Source="{Binding ImgSrc}"
+                                        VerticalOptions="FillAndExpand" />
 
-        <Label
-            FontSize="Large"
-            HorizontalTextAlignment="Center"
-            Text="Pick your Micro:bit" />
-        <ListView
-            x:Name="DevicesList"
-            Header="Detected Devices"
-            ItemsSource="{Binding DetectedDevices}">
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <TextCell Detail="{Binding State}" Text="{Binding Name}" />
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
-        <StackLayout Orientation="Horizontal">
-            <Button Command="{Binding ReScanCommand}" Text="Re-Scan" />
-            <Label
-                FontSize="Medium"
-                HorizontalOptions="EndAndExpand"
-                IsVisible="{Binding IsScanning}"
-                Text="Scanning for devices"
-                VerticalTextAlignment="Center" />
-            <ActivityIndicator
-                IsRunning="true"
-                IsVisible="{Binding IsScanning}"
-                VerticalOptions="Center" />
+                                    <Label
+                                        Grid.Row="0"
+                                        Grid.RowSpan="2"
+                                        Grid.Column="0"
+                                        FontAttributes="Bold"
+                                        FontSize="Title"
+                                        Text="{Binding Name}"
+                                        TextColor="{DynamicResource primaryTextColor}"
+                                        VerticalTextAlignment="Center" />
+                                    <Grid.GestureRecognizers>
+
+                                        <TapGestureRecognizer Command="{Binding BindingContext.DeviceCommand, Source={x:Reference Name=CvList}}" CommandParameter="{Binding .}" />
+                                    </Grid.GestureRecognizers>
+                                </Grid>
+                            </Frame>
+                        </Frame>
+
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
         </StackLayout>
-    </StackLayout>
-    <ContentPage.ToolbarItems>
-        <ToolbarItem
-            x:Name="InstructionsButton"
-            Name="Instructions"
-            Order="Primary"
-            Priority="0" />
-    </ContentPage.ToolbarItems>
+
+    </ContentPage.Content>
 </ContentPage>

@@ -61,7 +61,7 @@ namespace BoxingTire.App.ViewModels
             ServicesCommand = new Command(async () =>
             {
                 DetectedServices.Clear();
-                System.Collections.Generic.IList<IService> services = await _microbit.GetServicesAsync();
+               var  services = await _microbit.GetServicesAsync();
                 foreach (IService service in services)
                 {
                     IMicrobitServiceProvider microbitServiceProvider = IdToServiceProviderMappingProvider.ServiceProvider(service);
@@ -125,7 +125,7 @@ namespace BoxingTire.App.ViewModels
             DetectedServices.Clear();
             try
             {
-                IList<IService> services = await _microbit.GetServicesAsync();
+               var services = await _microbit.GetServicesAsync();
                 foreach (IService service in services)
                 {
                     IMicrobitServiceProvider microbitServiceProvider =
@@ -133,6 +133,7 @@ namespace BoxingTire.App.ViewModels
                     if (microbitServiceProvider != null)
                     {
                         DetectedServices.Add(microbitServiceProvider);
+                   
                     }
                 }
             }

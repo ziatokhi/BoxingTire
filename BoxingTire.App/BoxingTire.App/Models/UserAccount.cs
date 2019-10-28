@@ -6,7 +6,7 @@ namespace BoxingTire.Domain.Entities
 {
   public  class UserAccount
     {
-      public  int Id { get; set; }
+      public  Guid Id { get; set; }
         public string Name  { get; set; }
         public string EmailAddress { get; set; }
         public string Password { get; set; }
