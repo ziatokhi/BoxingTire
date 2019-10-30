@@ -25,7 +25,13 @@
                     <GridItemsLayout Orientation="Vertical" Span="1" />
                 </CollectionView.ItemsLayout>
                 <CollectionView.EmptyView>
-                    <Label>No Bluetooth Device Found!</Label>
+                    <StackLayout>
+                        <Label
+                            HorizontalOptions="CenterAndExpand"
+                            Text="No Bluetooth Device Found!"
+                            VerticalOptions="CenterAndExpand" />
+
+                    </StackLayout>
                 </CollectionView.EmptyView>
 
                 <CollectionView.HeaderTemplate>
@@ -80,8 +86,9 @@
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
-
+            <Button Command="{Binding ScanCommand}" Text="Scan for Paired Microbit Devices" />
         </StackLayout>
 
     </ContentPage.Content>
+
 </ContentPage>

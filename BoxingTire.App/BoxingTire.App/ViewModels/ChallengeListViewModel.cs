@@ -1,5 +1,5 @@
 ﻿using BoxingTire.App.Views;
-using BoxingTire.Domain.Entities;
+using BoxingTire.App.Models;
 
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -30,13 +30,13 @@ namespace BoxingTire.App.ViewModels
 
         private async void CategoryClick(object obj)
         {
-            if (App._microbit == null)
+            if (App.microbit == null)
             {
                 await Application.Current.MainPage.Navigation.PushModalAsync(new DeviceListPage());
             }
             else
             {
-                await Application.Current.MainPage.Navigation.PushAsync(new Challenge01());
+                await Application.Current.MainPage.Navigation.PushModalAsync(new Challenge01());
             }
         }
 

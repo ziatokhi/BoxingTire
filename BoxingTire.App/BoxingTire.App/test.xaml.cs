@@ -1,4 +1,5 @@
-﻿using BoxingTire.App.Services.Helpers;
+﻿using BoxingTire.App.Models;
+using BoxingTire.App.Services.Helpers;
 using Plugin.BLE.Abstractions.Contracts;
 using System;
 using System.Collections.Generic;
@@ -29,65 +30,15 @@ namespace BoxingTire.App
      
         private IList<ICharacteristic> CharacteristicsToUpdate = new List<ICharacteristic>();
         private HashSet<Guid> SeenCharacteristics= new HashSet<Guid>();
-        private double _x = double.NaN;
-        public Double X
-        {
-            get
-            {
-                return _x;
-            }
-            set
-            {
-                _x = value;
-             //   OnPropertyChanged();
-            }
-        }
-
-        private double _y = double.NaN;
-        public Double Y
-        {
-            get
-            {
-                return _y;
-            }
-            set
-            {
-                _y = value;
-            //    OnPropertyChanged();
-            }
-        }
-
-        private double _z = double.NaN;
-        public Double Z
-        {
-            get
-            {
-                return _z;
-            }
-            set
-            {
-                _z = value;
-           //     OnPropertyChanged();
-            }
-        }
+       
 
         private int _accelerometerPeriod = int.MinValue;
-        public int AccelerometerPeriod
-        {
-            get
-            {
-                return _accelerometerPeriod;
-            }
-            set
-            {
-                _accelerometerPeriod = value;
-             //   OnPropertyChanged();
-            }
-        }
-
+       
         public test()
         {
             InitializeComponent();
+
+            LoadCharacteristics();
         }
 
         private void Button_Clicked(object sender, EventArgs e)
@@ -96,7 +47,7 @@ namespace BoxingTire.App
 
             LoadCharacteristics();
         }
-
+        public Accelerometer _Accelerometer;
         async void b()
         {
             var b = Plugin.BLE.CrossBluetoothLE.Current;
@@ -112,6 +63,8 @@ namespace BoxingTire.App
 
         public async void LoadCharacteristics()
         {
+
+
             var b = Plugin.BLE.CrossBluetoothLE.Current;
 
             var p = b.Adapter.GetSystemConnectedOrPairedDevices().FirstOrDefault();
@@ -121,8 +74,7 @@ namespace BoxingTire.App
             var ServiceInstance = s.Where(x => x.Id == AccelerometerServiceId).FirstOrDefault();
 
             // var ServiceInstance = await a.GetCharacteristicsAsync();
-
-
+            double Punch_Count = 0;
             IEnumerable<ICharacteristic> characteristics = await ServiceInstance.GetCharacteristicsAsync();
             foreach (ICharacteristic characteristic in characteristics)
             {
@@ -130,51 +82,84 @@ namespace BoxingTire.App
                 {
                     characteristic.ValueUpdated += (sender, e) =>
                     {
-                        try
+                        byte[] rawBytes = e.Characteristic.Value;
+                        if (rawBytes.Length != 6)
+                            throw new InvalidDataException("Accelerometer characteristic should have 6 bytes");
+
+                        short rawX = ConversionHelpers.ByteArrayToShort16BitLittleEndian(new byte[] { rawBytes[0], rawBytes[1] });
+                        short rawY = ConversionHelpers.ByteArrayToShort16BitLittleEndian(new byte[] { rawBytes[2], rawBytes[3] });
+                        short rawZ = ConversionHelpers.ByteArrayToShort16BitLittleEndian(new byte[] { rawBytes[4], rawBytes[5] });
+
+                      double  X = ((double)rawX);// / 1000.0;
+                        double Y = ((double)rawY); /// 1000.0;
+                        double Z = ((double)rawZ);/// 1000.0;
+
+
+
+                        if (_Accelerometer is null)
                         {
-                            byte[] rawBytes = e.Characteristic.Value;
-                            if (rawBytes.Length != 6)
-                                throw new InvalidDataException("Accelerometer characteristic should have 6 bytes");
-
-                            short rawX = ConversionHelpers.ByteArrayToShort16BitLittleEndian(new byte[] { rawBytes[0], rawBytes[1] });
-                            short rawY = ConversionHelpers.ByteArrayToShort16BitLittleEndian(new byte[] { rawBytes[2], rawBytes[3] });
-                            short rawZ = ConversionHelpers.ByteArrayToShort16BitLittleEndian(new byte[] { rawBytes[4], rawBytes[5] });
-
-                                X = ((double)rawX) / 1000.0;
-                                 Y = ((double)rawY) / 1000.0;
-                                 Z = ((double)rawZ) / 1000.0;
-
-                                Debug.Write($"{X} Y{Y} Z{Z}");
+                            _Accelerometer = new Accelerometer();
+                            _Accelerometer.X = X;
+                            _Accelerometer.Y = Y;
+                            _Accelerometer.Z = Z;
+                            Debug.Write($"Calibrated :{_Accelerometer}");
                         }
-                        catch(Exception ex)
-                        {
 
 
-                        }
+
+                        double X_sensibility = Math.Abs(_Accelerometer.X / X) * 100;
+                        double Y_sensibility = Math.Abs(_Accelerometer.Y / Y) * 100;
+                        double Z_sensibility = Math.Abs(_Accelerometer.Z / Z) * 100;
+
+                        
+
+
+                        if ((X_sensibility >= 120 || X_sensibility <= 80) /*&& (Y_sensibility >= 120 || Y_sensibility <= 80) && (Z_sensibility >= 110 || Z_sensibility <= 90)*/)
+                            Punch_Count++;
+                        System.Threading.Thread.Sleep(500);
+                        Debug.Write($"_sensibility : {X_sensibility} Y{Y_sensibility} Z{Z_sensibility} PUNCH_COUNT{Punch_Count}");
+                        _Accelerometer.X = X;
+                        _Accelerometer.Y = Y;
+                        _Accelerometer.Z = Z;
+
+                        Device.BeginInvokeOnMainThread(() => { 
+                        lblX.Text = X_sensibility.ToString();
+                        lblY.Text = Y_sensibility.ToString();
+                        lblZ.Text = Z_sensibility.ToString();
+                        lblZ.Text = Punch_Count.ToString();
+
+                        });
+
+
+                        //if (X  > 0.5 || Y > 0.5 )
+                        //     Punch_Count++;
+
+                        //_Accelerometer.X = X;
+                        //_Accelerometer.Y = Y;
+                        //_Accelerometer.Z = Z;
+
+                        Debug.Write($"{X} Y{Y} Z{Z}");
+                        Debug.Write($"RAW X {rawX} Y{rawY} Z{rawZ}");
                     };
-                 //   MarkCharacteristicForUpdate(characteristic);
+                    //   MarkCharacteristicForUpdate(characteristic);
                     await characteristic.StartUpdatesAsync();
                     //await Task.Delay(500);
                 }
                 else if (characteristic.Id == AccelerometerPeriodCharacteristicId)
                 {
-
                     try
                     {
                         byte[] val = await characteristic.ReadAsync();
                         int period = ConversionHelpers.ByteArrayToShort16BitLittleEndian(val);
-                        AccelerometerPeriod = 1;
+                      //  AccelerometerPeriod = 100;
                     }
                     catch (Exception ex)
                     {
-
-
                     }
                 }
             }
 
-           // StartUpdates();
-           
+            // StartUpdates();
         }
 
         public void MarkCharacteristicForUpdate(ICharacteristic characteristic)

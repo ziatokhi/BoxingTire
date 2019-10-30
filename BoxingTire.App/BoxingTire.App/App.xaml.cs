@@ -5,32 +5,36 @@ using Xamarin.Forms.Xaml;
 using BoxingTire.App.Views;
 using BoxingTire.App.ViewModels;
 using Plugin.BLE.Abstractions.Contracts;
+using BoxingTire.App.Models;
 
 namespace BoxingTire.App
 {
     public partial class App : Application
     {
-        public static IDevice _microbit;
+        public static IDevice microbit;
         public static Guid  UserId;
+        public static Accelerometer Calibrated_Accelerometer;
+        public static string  DbPath;
+
         public App()
         {
             InitializeComponent();
 
             //      DependencyService.Register<MockDataStore>();
-              MainPage = new AppShell();
+             MainPage = new AppShell();
 
             //   MainPage = new Challenge01();
             //  MainPage = new MasterPageMenu();
 
-              MainPage = new Login() ;
+                MainPage = new LoginPage() ;
 
-
+           // MainPage = new SignUpPage();
 
             // MainPage = new AccelerometerPage(x.);
 
             //   MainPage = new DeviceListPage();
 
-          //  MainPage = new test();
+            //  MainPage = new test();
         }
 
         protected override void OnStart()

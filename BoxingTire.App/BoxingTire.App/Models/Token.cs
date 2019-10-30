@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace BoxingTire.Domain.Entities
+namespace BoxingTire.App.Models
 {
     public class Token
     {

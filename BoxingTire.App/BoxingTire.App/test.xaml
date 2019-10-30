@@ -8,11 +8,10 @@
     mc:Ignorable="d">
     <ContentPage.Content>
         <StackLayout>
-            <Label
-                HorizontalOptions="CenterAndExpand"
-                Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" />
-            <Button Clicked="Button_Clicked" Text="click" />
+            <Label x:Name="lblX" />
+            <Label x:Name="lblY" />
+            <Label x:Name="lblZ" />
+
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

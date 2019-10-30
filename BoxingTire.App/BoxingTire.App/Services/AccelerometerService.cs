@@ -93,7 +93,7 @@ namespace BoxingTire.App.Services
         {
             
             
-            var s = await App._microbit.GetServicesAsync();
+            var s = await App.microbit.GetServicesAsync();
 
             var ServiceInstance = s.Where(x => x.Id == AccelerometerServiceId).FirstOrDefault();
 

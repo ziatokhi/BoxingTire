@@ -10,9 +10,9 @@ using Xamarin.Forms.Xaml;
 namespace BoxingTire.App.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class Login : ContentPage
+    public partial class SignUpPage : ContentPage
     {
-        public Login()
+        public SignUpPage()
         {
             InitializeComponent();
         }

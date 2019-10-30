@@ -1,5 +1,6 @@
 ﻿using BoxingTire.App.Views;
 using Plugin.BLE.Abstractions.Contracts;
+using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
@@ -14,6 +15,7 @@ namespace BoxingTire.App.ViewModels
         private IBluetoothLE _bluetoothLe;
         private IAdapter _adapter;
         public ICommand DeviceCommand { get; private set; }
+        public ICommand ScanCommand { get; }
         public ObservableCollection<IDevice> DeviceList { get; }
         private bool _IsBusy = false;
 
@@ -34,19 +36,32 @@ namespace BoxingTire.App.ViewModels
         {
             //Title = "Challenges List";
             DeviceCommand = new Command(DeviceClick);
+            ScanCommand = new Command(ScanClick);
             DeviceList = new ObservableCollection<IDevice>();
             _bluetoothLe = Plugin.BLE.CrossBluetoothLE.Current;
+            GetData();
 
+
+        }
+
+        void GetData()
+        {
+            DeviceList.Clear();
             foreach (IDevice device in _bluetoothLe.Adapter.GetSystemConnectedOrPairedDevices())
             {
                 DeviceList.Add(device);
             }
         }
 
+        private void ScanClick(object obj)
+        {
+            GetData();
+        }
+
         private async void DeviceClick(object obj)
         {
-            App._microbit = obj as IDevice;
-            await _bluetoothLe.Adapter.ConnectToDeviceAsync(App._microbit);
+            App.microbit = obj as IDevice;
+            await _bluetoothLe.Adapter.ConnectToDeviceAsync(App.microbit);
 
             await Application.Current.MainPage.Navigation.PopModalAsync();
         }
