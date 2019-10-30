@@ -11,5 +11,7 @@ namespace BoxingTire.Domain.Entities
 
         public string ImgSrc { get; set; }
         public bool IsEnable { get; set; }
+
+      
     }
 }

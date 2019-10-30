@@ -25,12 +25,21 @@
                     <GridItemsLayout Orientation="Vertical" Span="1" />
                 </CollectionView.ItemsLayout>
                 <CollectionView.EmptyView>
-                    <Label>No Bluetooth Device Found!</Label>
+                    <StackLayout>
+
+                        <Label
+                            HorizontalOptions="CenterAndExpand"
+                            Text="BlueTooth Device not found!"
+                            VerticalOptions="CenterAndExpand" />
+                    </StackLayout>
                 </CollectionView.EmptyView>
 
                 <CollectionView.HeaderTemplate>
                     <DataTemplate>
-                        <Label>asdasd</Label>
+                        <StackLayout HorizontalOptions="Center" VerticalOptions="Center">
+
+                            <Label HorizontalTextAlignment="Center" VerticalTextAlignment="Center">asdasd</Label>
+                        </StackLayout>
                     </DataTemplate>
                 </CollectionView.HeaderTemplate>
 

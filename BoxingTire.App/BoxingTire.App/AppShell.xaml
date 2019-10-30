@@ -12,10 +12,39 @@
     <!--
         Styles and Resources
     -->
+    <Shell.FlyoutHeader>
+        <DataTemplate>
+            <Label>sdasd</Label>
+        </DataTemplate>
+    </Shell.FlyoutHeader>
 
-    <ShellItem>
-        <ShellContent>
-            <pages:ChallengeList />
-        </ShellContent>
-    </ShellItem>
+
+
+
+    <ShellContent
+        Title="Challenge"
+        ContentTemplate="{DataTemplate pages:ChallengeList}"
+        Icon="home.png"
+        Route="ChallengeList" />
+
+    <ShellContent
+        Title="Acheivements"
+        ContentTemplate="{DataTemplate pages:StatusPage}"
+        Icon="library.png"
+        Route="StatusPage" />
+
+    <ShellContent
+        Title="Connect Microbit Device"
+        ContentTemplate="{DataTemplate pages:DeviceListPage}"
+        Icon="library.png"
+        Route="DeviceListPage" />
+
+    <ShellContent
+        Title="Setting"
+        ContentTemplate="{DataTemplate pages:SettingPage}"
+        Icon="contact.png"
+        Route="SettingPage" />
+
+
+
 </Shell>

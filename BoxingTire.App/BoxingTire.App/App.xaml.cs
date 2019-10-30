@@ -23,7 +23,7 @@ namespace BoxingTire.App
             //   MainPage = new Challenge01();
             //  MainPage = new MasterPageMenu();
 
-              MainPage = new Login() ;
+          //    MainPage = new Login() ;
 
 
 
