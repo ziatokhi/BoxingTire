@@ -1,0 +1,79 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="BoxingTire.App.Views.StatusPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:vm="clr-namespace:BoxingTire.App.ViewModels"
+    mc:Ignorable="d">
+    <ContentPage.BindingContext>
+        <vm:StatusViewModel />
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <Frame>
+            <Frame>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+
+                    <Label
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        FontSize="Large"
+                        Text="{Binding StatusUserName}" />
+                    <Label
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        FontSize="Large"
+                        Text="Training Time" />
+                    <Label
+                        Grid.Row="0"
+                        Grid.Column="1"
+                        FontSize="Large"
+                        Text="{Binding TotalTrainingTime}" />
+                    <Label
+                        Grid.Row="1"
+                        Grid.Column="0"
+                        FontSize="Large"
+                        Text="Total Punch" />
+                    <Label
+                        Grid.Row="1"
+                        Grid.Column="1"
+                        FontSize="Large"
+                        Text="{Binding TotalPunch}" />
+                    <Label
+                        Grid.Row="2"
+                        Grid.Column="0"
+                        FontSize="Large"
+                        Text="Avg Force" />
+                    <Label
+                        Grid.Row="2"
+                        Grid.Column="1"
+                        FontSize="Large"
+                        Text="{Binding AvgForce}" />
+                    <Label
+                        Grid.Row="3"
+                        Grid.Column="0"
+                        FontSize="Large"
+                        Text="Avg Speed" />
+                    <Label
+                        Grid.Row="3"
+                        Grid.Column="1"
+                        FontSize="Large"
+                        Text="{Binding AvgSpeed}" />
+
+
+                </Grid>
+            </Frame>
+        </Frame>
+    </ContentPage.Content>
+</ContentPage>

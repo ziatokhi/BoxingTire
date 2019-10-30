@@ -3,6 +3,7 @@
     x:Class="BoxingTire.App.Views.ChallengeList"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:View="clr-namespace:BoxingTire.App.Views"
     xmlns:d="http://xamarin.com/schemas/2014/forms/design"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:vm="clr-namespace:BoxingTire.App.ViewModels"
@@ -17,6 +18,7 @@
 
             <CollectionView
                 x:Name="CvList"
+                Header=""
                 HorizontalOptions="FillAndExpand"
                 ItemSizingStrategy="MeasureAllItems"
                 ItemsSource="{Binding ChallengeCategoryList}"
@@ -30,12 +32,6 @@
                     <Label Text="Empty" />
                 </CollectionView.EmptyView>
 
-                <CollectionView.HeaderTemplate>
-                    <DataTemplate>
-                        <Label>asdasd</Label>
-                    </DataTemplate>
-                </CollectionView.HeaderTemplate>
-
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
 
@@ -45,10 +41,14 @@
                                     <Grid.RowDefinitions>
                                         <RowDefinition />
                                         <RowDefinition />
+
                                     </Grid.RowDefinitions>
                                     <Grid.ColumnDefinitions>
 
                                         <ColumnDefinition />
+                                        <ColumnDefinition />
+                                        <ColumnDefinition />
+
 
 
                                     </Grid.ColumnDefinitions>
@@ -56,6 +56,7 @@
                                         Grid.Row="0"
                                         Grid.RowSpan="2"
                                         Grid.Column="0"
+                                        Grid.ColumnSpan="3"
                                         Margin="-10"
                                         Aspect="Fill"
                                         HorizontalOptions="Fill"
@@ -64,10 +65,33 @@
 
                                     <Label
                                         Grid.Row="0"
-                                        Grid.RowSpan="2"
                                         Grid.Column="0"
+                                        Grid.ColumnSpan="2"
                                         FontAttributes="Bold"
                                         FontSize="Title"
+                                        Text="{Binding Name}"
+                                        TextColor="{DynamicResource primaryTextColor}"
+                                        VerticalTextAlignment="Center" />
+
+                                    <Label
+                                        Grid.Row="1"
+                                        Grid.Column="0"
+                                        Text="{Binding Name}"
+                                        TextColor="{DynamicResource primaryTextColor}"
+                                        VerticalTextAlignment="Center" />
+
+                                    <Label
+                                        Grid.Row="1"
+                                        Grid.Column="1"
+                                        HorizontalTextAlignment="Center"
+                                        Text="{Binding Name}"
+                                        TextColor="{DynamicResource primaryTextColor}"
+                                        VerticalTextAlignment="Center" />
+
+                                    <Label
+                                        Grid.Row="1"
+                                        Grid.Column="2"
+                                        HorizontalTextAlignment="End"
                                         Text="{Binding Name}"
                                         TextColor="{DynamicResource primaryTextColor}"
                                         VerticalTextAlignment="Center" />

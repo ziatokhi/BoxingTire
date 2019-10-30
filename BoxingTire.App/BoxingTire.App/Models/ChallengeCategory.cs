@@ -11,5 +11,7 @@ namespace BoxingTire.App.Models
 
         public string ImgSrc { get; set; }
         public bool IsEnable { get; set; }
+
+      
     }
 }
