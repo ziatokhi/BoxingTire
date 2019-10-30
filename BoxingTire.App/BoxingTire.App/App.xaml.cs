@@ -19,6 +19,7 @@ namespace BoxingTire.App
             //      DependencyService.Register<MockDataStore>();
               MainPage = new AppShell();
 
+
             //   MainPage = new Challenge01();
             //  MainPage = new MasterPageMenu();
 
