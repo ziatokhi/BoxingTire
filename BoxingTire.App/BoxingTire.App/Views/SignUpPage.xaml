@@ -6,6 +6,7 @@
     xmlns:d="http://xamarin.com/schemas/2014/forms/design"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:vm="clr-namespace:BoxingTire.App.ViewModels"
+    BackgroundImageSource="signup"
     mc:Ignorable="d">
     <ContentPage.BindingContext>
         <vm:SignUpViewModel />
@@ -33,7 +34,7 @@
                 Grid.Column="0"
                 FontSize="Title"
                 HorizontalTextAlignment="Center"
-                Text="SignUp Page" />
+                Text="Sign Up" />
 
 
             <Entry
@@ -85,10 +86,11 @@
                 VerticalOptions="EndAndExpand">
                 <Label.FormattedText>
                     <FormattedString>
-                        <Span Text="Already have account? " />
+                        <Span Text="Already have account? " TextColor="Silver" />
                         <Span
+                            FontSize="Large"
                             Text="Login"
-                            TextColor="Blue"
+                            TextColor="Yellow"
                             TextDecorations="Underline">
                             <Span.GestureRecognizers>
                                 <TapGestureRecognizer Command="{Binding LoginCommand}" />

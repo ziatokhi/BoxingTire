@@ -25,6 +25,23 @@
             </OnPlatform>
 
 
+            <Style TargetType="Label">
+                <Setter Property="TextColor" Value="White" />
+
+            </Style>
+            <Style TargetType="Entry">
+                <Setter Property="BackgroundColor" Value="#40FFFFFF" />
+                <Setter Property="TextColor" Value="White" />
+                <Setter Property="PlaceholderColor" Value="White" />
+
+            </Style>
+            <Style TargetType="Button">
+                <Setter Property="CornerRadius" Value="30" />
+
+                <Setter Property="BackgroundColor" Value="#9FFF0000" />
+                <Setter Property="TextColor" Value="White" />
+
+            </Style>
 
 
             <Style x:Key="frList" TargetType="Frame">
