@@ -1,5 +1,6 @@
 ﻿using BoxingTire.App.Models;
 using BoxingTire.App.Services.Helpers;
+using Microsoft.EntityFrameworkCore;
 using Plugin.BLE.Abstractions.Contracts;
 using System;
 using System.Collections.Generic;
@@ -9,6 +10,7 @@ using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Windows.Input;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace BoxingTire.App.ViewModels
@@ -17,12 +19,7 @@ namespace BoxingTire.App.ViewModels
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public Challenge01ViewModel()
-        {
-            //Title = "Challenge";
-            Start_Stop_Command = new Command(Start_Stop_Click);
-        }
-
+      
         public static Guid DeviceInformationServiceId = new Guid("0000180A00001000800000805F9B34FB");
         public static Guid TemperatureServiceId = new Guid("E95D6100251D470AA062FA1922DFA9A8");
         public static Guid AccelerometerServiceId = new Guid("E95D0753251D470AA062FA1922DFA9A8");
@@ -36,6 +33,10 @@ namespace BoxingTire.App.ViewModels
         private IList<ICharacteristic> CharacteristicsToUpdate = new List<ICharacteristic>();
         private HashSet<Guid> SeenCharacteristics = new HashSet<Guid>();
         private double _x = double.NaN;
+
+        private int _ChallengeCategory_Id = App.ChallengeCategory_Id;
+
+        private DateTime _StartTime;
 
         public Double X
         {
@@ -95,9 +96,16 @@ namespace BoxingTire.App.ViewModels
             }
         }
 
-        public Accelerometer _Accelerometer;
+      //  public Accelerometer _Accelerometer;
 
         public ICommand Start_Stop_Command { get; private set; }
+
+        public ICommand SoundCommnd { get; private set; }
+        public ICommand VibrateCommnd { get; private set; }
+
+        public bool IsSound = false;
+        public bool IsVibrate = false;
+
 
         private bool _isRunning = false;
 
@@ -164,6 +172,52 @@ namespace BoxingTire.App.ViewModels
             }
         }
 
+
+        public Challenge01ViewModel()
+        {
+
+            _StartTime = DateTime.Now;
+
+            _ChallengeCategory_Id = App.ChallengeCategory_Id;
+            //Title = "Challenge";
+            Start_Stop_Command = new Command(Start_Stop_Click);
+           VibrateCommnd = new Command(Vibrate_click);
+            SoundCommnd = new Command(Sound_click);
+
+        }
+
+        private void Sound_click(object obj)
+        {
+            Button btn = obj as Button;
+            if (IsSound == false)
+            {
+                IsSound = true;
+                btn.BackgroundColor = Color.Blue;
+            }
+            else
+            {
+                IsSound = false;
+                btn.BackgroundColor = Color.Black;
+
+            }
+        }
+
+        private void Vibrate_click(object obj)
+        {
+            Button btn = obj as Button;
+            if (IsVibrate == false)
+            {
+                IsVibrate = true;
+                btn.BackgroundColor = Color.Blue ;
+            }
+            else
+            {
+                IsVibrate =false;
+                btn.BackgroundColor = Color.Black;
+
+            }
+        }
+
         private void Start_Stop_Click(object obj)
         {
             Button btn = obj as Button;
@@ -176,80 +230,130 @@ namespace BoxingTire.App.ViewModels
             }
             else
             {
+
                 btn.Text = "Start";
+                SaveData();
                 IsRunning = false;
             }
         }
 
-        public double abs(int x)
+
+     async   void  SaveData()
         {
-            if (x < 0)
-                return (-1 * x);
-            return (x);
-        
+
+            //save data to database ;
+            if (Punch_Count + Punch_Force + Punch_Speed > 0)
+            { 
+                using (var db = new BoxingTireDbContext())
+                {
+
+                    db.UserScore.Add(new UserScore
+                    {
+                        ChallengeCategory_Id = _ChallengeCategory_Id,
+                         Date =DateTime.Now,
+                          Force = Punch_Force,
+                           PunchCount = Punch_Count,
+                            Speed  = Punch_Speed,
+                             StartTime = _StartTime,
+                              StopTime = DateTime.Now,
+                               Id = Guid.NewGuid(),
+                               UserAccount_Id = App.UserId,
+
+                    }) ;
+                 await  db.SaveChangesAsync();
+
+                 await   App.Current.MainPage.DisplayAlert("Training", $"You current Session Punchs {Punch_Count} Avg-Force {Punch_Force} Avg-Speed {Punch_Speed}", "Ok");
+                }
+
+        }
+
         }
 
 
         public async void LoadCharacteristics()
         {
-            var s = await App.microbit.GetServicesAsync();
 
-            var ServiceInstance = s.Where(x => x.Id == AccelerometerServiceId).FirstOrDefault();
-
-            // var ServiceInstance = await a.GetCharacteristicsAsync();
-
-            IEnumerable<ICharacteristic> characteristics = await ServiceInstance.GetCharacteristicsAsync();
-            foreach (ICharacteristic characteristic in characteristics)
+            try
             {
-                if (characteristic.Id == AccelerometerCharacteristicId)
+                var s = await App.microbit.GetServicesAsync();
+
+                var ServiceInstance = s.Where(x => x.Id == AccelerometerServiceId).FirstOrDefault();
+
+                // var ServiceInstance = await a.GetCharacteristicsAsync();
+
+                IEnumerable<ICharacteristic> characteristics = await ServiceInstance.GetCharacteristicsAsync();
+                foreach (ICharacteristic characteristic in characteristics)
                 {
-                    characteristic.ValueUpdated += (sender, e) =>
+                    if (characteristic.Id == AccelerometerCharacteristicId)
                     {
-                        byte[] rawBytes = e.Characteristic.Value;
-                        if (rawBytes.Length != 6)
-                            throw new InvalidDataException("Accelerometer characteristic should have 6 bytes");
+                        characteristic.ValueUpdated += (sender, e) =>
+                        {
+                            byte[] rawBytes = e.Characteristic.Value;
+                            if (rawBytes.Length != 6)
+                                throw new InvalidDataException("Accelerometer characteristic should have 6 bytes");
 
-                        short rawX = ConversionHelpers.ByteArrayToShort16BitLittleEndian(new byte[] { rawBytes[0], rawBytes[1] });
-                        short rawY = ConversionHelpers.ByteArrayToShort16BitLittleEndian(new byte[] { rawBytes[2], rawBytes[3] });
-                        short rawZ = ConversionHelpers.ByteArrayToShort16BitLittleEndian(new byte[] { rawBytes[4], rawBytes[5] });
+                            short rawX = ConversionHelpers.ByteArrayToShort16BitLittleEndian(new byte[] { rawBytes[0], rawBytes[1] });
+                            short rawY = ConversionHelpers.ByteArrayToShort16BitLittleEndian(new byte[] { rawBytes[2], rawBytes[3] });
+                            short rawZ = ConversionHelpers.ByteArrayToShort16BitLittleEndian(new byte[] { rawBytes[4], rawBytes[5] });
 
-                        X = ((double)rawX) / 1000.0;
-                        Y = ((double)rawY)/ 1000.0;
-                        Z = ((double)rawZ)/ 1000.0;
+                            X = ((double)rawX) / 1000.0;
+                            Y = ((double)rawY) / 1000.0;
+                            Z = ((double)rawZ) / 1000.0;
 
-                       
- 
 
-                        if (   X > 1 )
-                          Punch_Count++;
 
-                      
 
- 
-                     
+                            if (X > 1)
+                            {
+                                Punch_Count++;
+                                Punch_Speed = 0;
+                                Punch_Force = 0;
+                                if (IsVibrate == true)
+                                {
+                                    Device.BeginInvokeOnMainThread(() =>
+                                    {
+                                        Vibration.Vibrate(rawX);
+                                    });
+                                }
 
-                        Debug.Write($"{X} Y{Y} Z{Z}");
-                        Debug.Write($"RAW X {rawX} Y{rawY} Z{rawZ}");
-                    };
-                    //   MarkCharacteristicForUpdate(characteristic);
-                    await characteristic.StartUpdatesAsync();
-                     //await Task.Delay(500);
-                }
-                else if (characteristic.Id == AccelerometerPeriodCharacteristicId)
-                {
-                    try
-                    {
-                        byte[] val = await characteristic.ReadAsync();
-                        int period = ConversionHelpers.ByteArrayToShort16BitLittleEndian(val);
-                        AccelerometerPeriod = period;
+
+
+                            }
+
+
+
+
+
+
+                            Debug.Write($"{X} Y{Y} Z{Z}");
+                            Debug.Write($"RAW X {rawX} Y{rawY} Z{rawZ}");
+                        };
+                        //   MarkCharacteristicForUpdate(characteristic);
+                        await characteristic.StartUpdatesAsync();
+                        //await Task.Delay(500);
                     }
-                    catch (Exception ex)
+                    else if (characteristic.Id == AccelerometerPeriodCharacteristicId)
                     {
+                        try
+                        {
+                            byte[] val = await characteristic.ReadAsync();
+                            int period = ConversionHelpers.ByteArrayToShort16BitLittleEndian(val);
+                            AccelerometerPeriod = period;
+                        }
+                        catch (Exception ex)
+                        {
+                        }
                     }
                 }
+
+                // StartUpdates();
+
             }
+            catch (Exception ex)
+            {
 
-            // StartUpdates();
+                Debug.Write($"Error: {ex.Message}");
+            }
         }
 
         public void OnPropertyChanged([CallerMemberName] string propertyName = null)

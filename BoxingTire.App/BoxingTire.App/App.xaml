@@ -18,6 +18,15 @@
             <x:String x:Key="primaryTextColor">#ffffff</x:String>
             <x:String x:Key="secondaryTextColor">#000000</x:String>
 
+            <x:String x:Key="fontbold">Fonts/Roboto/Roboto-Bold.ttf#Roboto</x:String>
+            <OnPlatform x:Key="fonticons" x:TypeArguments="x:String">
+                <On Platform="Android" Value="Fonts/AwsomeFontIcon/Font Awesome 5 Free-Solid-900.otf#Font Awesome 5 Free" />
+                <On Platform="iOS" Value="Font Awesome 5 Free" />
+            </OnPlatform>
+
+
+
+
             <Style x:Key="frList" TargetType="Frame">
                 <Setter Property="BackgroundColor" Value="{StaticResource primaryLightColor}" />
                 <Setter Property="Margin" Value="0" />

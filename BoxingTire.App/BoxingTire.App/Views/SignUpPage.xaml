@@ -31,8 +31,9 @@
             <Label
                 Grid.Row="1"
                 Grid.Column="0"
+                FontSize="Title"
                 HorizontalTextAlignment="Center"
-                Text="Welcome to SignUp Page" />
+                Text="SignUp Page" />
 
 
             <Entry

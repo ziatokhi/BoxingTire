@@ -13,8 +13,8 @@ namespace BoxingTire.App.ViewModels
        
         
         private bool _IsBusy = false;
-        private string _UserName;
-        private string _Password;
+        private string _UserName ;
+        private string _Password ;
         private string _PasswordMatch;
 
         public ICommand SignUpCommand { get; }
@@ -117,7 +117,13 @@ namespace BoxingTire.App.ViewModels
         {
             IsBusy = true;
 
-            if (UserName.Length > 3 && Password == PasswordMatch)
+            if ( !String.IsNullOrEmpty(UserName) &&
+                !String.IsNullOrEmpty(Password) &&
+                !String.IsNullOrEmpty(PasswordMatch) &&
+
+
+
+                UserName.Length > 2 && Password == PasswordMatch)
             {
                 using (var db = new BoxingTireDbContext())
                 {
@@ -146,6 +152,8 @@ namespace BoxingTire.App.ViewModels
                     }
                 }
             }
+
+            IsBusy =false;
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

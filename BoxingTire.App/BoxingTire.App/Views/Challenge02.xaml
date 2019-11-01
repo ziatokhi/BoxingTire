@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage
-    x:Class="BoxingTire.App.Views.Challenge01"
+    x:Class="BoxingTire.App.Views.Challenge02"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:d="http://xamarin.com/schemas/2014/forms/design"
@@ -16,8 +16,10 @@
         <x:String x:Key="color02">#0dd94e</x:String>
         <x:String x:Key="color03">#cc0404</x:String>
     </ContentPage.Resources>
-
     <ContentPage.Content>
+
+
+
 
 
         <Frame
@@ -40,14 +42,14 @@
                 <Frame
                     Grid.Row="0"
                     Grid.Column="0"
-                    Margin="0,-170,0,0"
+                    Margin="0,0,0,0"
                     BackgroundColor="{DynamicResource primaryDarkColor}"
                     BorderColor="{DynamicResource color01}"
-                    CornerRadius="120"
-                    HeightRequest="160"
+                    CornerRadius="150"
+                    HeightRequest="250"
                     HorizontalOptions="Center"
                     VerticalOptions="Center"
-                    WidthRequest="160">
+                    WidthRequest="250">
                     <Grid>
                         <Grid.RowDefinitions>
                             <RowDefinition />
@@ -77,83 +79,9 @@
                     </Grid>
                 </Frame>
 
-                <Frame
-                    Grid.Row="0"
-                    Grid.Column="0"
-                    Margin="-180,160,0,0"
-                    BackgroundColor="{DynamicResource primaryDarkColor}"
-                    BorderColor="{DynamicResource color02}"
-                    CornerRadius="90"
-                    HeightRequest="120"
-                    HorizontalOptions="Center"
-                    VerticalOptions="Center"
-                    WidthRequest="120">
-                    <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition />
-                        </Grid.RowDefinitions>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition />
-                        </Grid.ColumnDefinitions>
 
 
-                        <Label
-                            x:Name="lblSpeed"
-                            Grid.Row="0"
-                            Grid.Column="0"
-                            FontSize="60"
-                            HorizontalTextAlignment="Center"
-                            Text="{Binding Punch_Speed}"
-                            TextColor="{DynamicResource color02}"
-                            VerticalTextAlignment="Center" />
-                        <Label
-                            Margin="0,90,0,0"
-                            FontSize="Caption"
-                            HorizontalTextAlignment="Center"
-                            Text="Speed (MPH)"
-                            TextColor="{DynamicResource color02}"
-                            VerticalTextAlignment="Center" />
-                    </Grid>
-                </Frame>
 
-                <Frame
-                    Grid.Row="0"
-                    Grid.Column="0"
-                    Margin="180,160,0,0"
-                    BackgroundColor="{DynamicResource primaryDarkColor}"
-                    BorderColor="{DynamicResource color03}"
-                    CornerRadius="90"
-                    HeightRequest="120"
-                    HorizontalOptions="Center"
-                    VerticalOptions="Center"
-                    WidthRequest="120">
-                    <Grid Grid.Row="0" Grid.Column="0">
-                        <Grid.RowDefinitions>
-                            <RowDefinition />
-                        </Grid.RowDefinitions>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition />
-                        </Grid.ColumnDefinitions>
-
-
-                        <Label
-                            x:Name="lblForce"
-                            Grid.Row="0"
-                            Grid.Column="0"
-                            FontSize="60"
-                            HorizontalTextAlignment="Center"
-                            Text="{Binding Punch_Force}"
-                            TextColor="{DynamicResource color03}"
-                            VerticalTextAlignment="Center" />
-                        <Label
-                            Margin="0,90,0,0"
-                            FontSize="Caption"
-                            HorizontalTextAlignment="Center"
-                            Text="Force (LBS)"
-                            TextColor="{DynamicResource color03}"
-                            VerticalTextAlignment="Center" />
-                    </Grid>
-                </Frame>
 
                 <Button
                     x:Name="btn_Start_Stop"

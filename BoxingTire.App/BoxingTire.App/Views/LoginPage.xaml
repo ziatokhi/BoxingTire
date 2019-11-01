@@ -25,11 +25,20 @@
             <RowDefinition />
         </Grid.RowDefinitions>
 
+        <Image
+            Grid.Row="0"
+            Grid.RowSpan="7"
+            Grid.Column="0"
+            HorizontalOptions="CenterAndExpand"
+            Source="login"
+            VerticalOptions="CenterAndExpand" />
+
         <Label
             Grid.Row="1"
             Grid.Column="0"
+            FontSize="Title"
             HorizontalTextAlignment="Center"
-            Text="Welcome" />
+            Text="Welcome to Boxing Tires" />
 
 
         <Entry
@@ -38,7 +47,7 @@
             Grid.Column="0"
             HorizontalOptions="FillAndExpand"
             Keyboard="Email"
-            Placeholder="User Name"
+            Placeholder="Email Address"
             Text="{Binding UserName}" />
 
 
@@ -63,6 +72,7 @@
         <Label
             Grid.Row="6"
             Grid.Column="0"
+            HorizontalTextAlignment="Center"
             Text="{Binding DisplayMessage}"
             TextColor="{Binding DisplayMessageColor}" />
 

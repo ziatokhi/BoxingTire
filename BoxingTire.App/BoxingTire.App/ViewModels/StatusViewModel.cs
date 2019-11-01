@@ -1,4 +1,7 @@
-﻿using System.ComponentModel;
+﻿using BoxingTire.App.Models;
+using System;
+using System.ComponentModel;
+using System.Linq;
 using System.Runtime.CompilerServices;
 
 namespace BoxingTire.App.ViewModels
@@ -8,13 +11,36 @@ namespace BoxingTire.App.ViewModels
         public StatusViewModel()
         {
 
+            try
+            {
 
 
+                using (var db = new BoxingTireDbContext())
+                {
+                    var UserId = App.UserId;
+
+                    TotalPunch = db.UserScore.Where(x => x.UserAccount_Id == UserId).Sum(x => x.PunchCount);
+
+                    TotalTrainingTime = long.Parse(db.UserScore.Where(x => x.UserAccount_Id == UserId).Sum(x => (x.StopTime - x.StartTime).TotalMinutes).ToString());
+                    
+                    
+                    AvgForce = int.Parse(db.UserScore.Where(x => x.UserAccount_Id == UserId).DefaultIfEmpty().Average(x => x.Force).ToString());
+
+                    AvgSpeed = int.Parse(db.UserScore.Where(x => x.UserAccount_Id == UserId).DefaultIfEmpty().Average(x => x.Speed).ToString());
+
+                }
+            }
+            catch(Exception ex)
+            {
+                App.Current.MainPage.DisplayAlert("Error", ex.Message, "Ok");
+
+            }
+             
         }
 
-        private int _TotalTrainingTime = 0;
+        private long _TotalTrainingTime = 0;
 
-        public int TotalTrainingTime
+        public long TotalTrainingTime
         {
             get
             {

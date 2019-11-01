@@ -87,9 +87,16 @@ namespace BoxingTire.App.ViewModels
 
         public LoginViewModel()
         {
-            
 
-            LoginCommand = new Command(Login_Click);
+            using (var db = new BoxingTireDbContext())
+            {
+
+                // 
+            }
+
+
+
+                LoginCommand = new Command(Login_Click);
             SignUpCommand = new Command(() =>
             {
                 Application.Current.MainPage.Navigation.PushModalAsync(new SignUpPage()); ;
@@ -113,16 +120,20 @@ namespace BoxingTire.App.ViewModels
         private void Login_Click(object obj)
         {
             IsBusy = true;
-            using (var db = new BoxingTireDbContext())
+
+            if (!string.IsNullOrEmpty(UserName) && !string.IsNullOrEmpty(Password))
             {
-                if (db.UserAccount.Where(x => x.EmailAddress ==UserName && x.Password ==Password && x.IsEnable ==true).Count() > 0)
+                using (var db = new BoxingTireDbContext())
                 {
-                    Application.Current.MainPage = new AppShell();
-                }
-                else
-                {
-                    DisplayMessage = "Login Failed Please Check Email Or Password?";
-                    DisplayMessageColor = "#ff0000"; // Red Color
+                    if (db.UserAccount.Where(x => x.EmailAddress == UserName && x.Password == Password && x.IsEnable == true).Count() > 0)
+                    {
+                        Application.Current.MainPage = new AppShell();
+                    }
+                    else
+                    {
+                        DisplayMessage = "Login Failed Please Check Email Or Password?";
+                        DisplayMessageColor = "#ff0000"; // Red Color
+                    }
                 }
             }
             IsBusy =false;

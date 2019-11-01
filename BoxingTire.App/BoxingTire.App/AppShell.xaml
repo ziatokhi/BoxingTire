@@ -7,11 +7,31 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:pages="clr-namespace:BoxingTire.App.Views"
     Title="BoxingTire.App"
+    BackgroundColor="Black"
+    FlyoutBehavior="Disabled"
     mc:Ignorable="d">
 
+    <Shell.Resources>
+        <ResourceDictionary>
+            <Color x:Key="NavigationPrimary">#2196F3</Color>
+            <Style x:Key="BaseStyle" TargetType="Element">
+                <Setter Property="Shell.BackgroundColor" Value="Black" />
+                <Setter Property="Shell.ForegroundColor" Value="White" />
+                <Setter Property="Shell.TitleColor" Value="White" />
+                <Setter Property="Shell.DisabledColor" Value="#B4FFFFFF" />
+                <Setter Property="Shell.UnselectedColor" Value="#95FFFFFF" />
+                <Setter Property="Shell.TabBarBackgroundColor" Value="Black" />
+                <Setter Property="Shell.TabBarForegroundColor" Value="White" />
+                <Setter Property="Shell.TabBarUnselectedColor" Value="#95FFFFFF" />
+                <Setter Property="Shell.TabBarTitleColor" Value="White" />
+            </Style>
+            <Style BasedOn="{StaticResource BaseStyle}" TargetType="TabBar" />
+        </ResourceDictionary>
+    </Shell.Resources>
     <!--
         Styles and Resources
     -->
+
     <Shell.FlyoutHeader>
         <DataTemplate>
             <Label>sdasd</Label>
@@ -21,30 +41,77 @@
 
 
 
-    <ShellContent
-        Title="Challenge"
-        ContentTemplate="{DataTemplate pages:ChallengeList}"
-        Icon="home.png"
-        Route="ChallengeList" />
-
-    <ShellContent
-        Title="Acheivements"
-        ContentTemplate="{DataTemplate pages:StatusPage}"
-        Icon="library.png"
-        Route="StatusPage" />
-
-    <ShellContent
-        Title="Connect Microbit Device"
-        ContentTemplate="{DataTemplate pages:DeviceListPage}"
-        Icon="library.png"
-        Route="DeviceListPage" />
-
-    <ShellContent
-        Title="Setting"
-        ContentTemplate="{DataTemplate pages:SettingPage}"
-        Icon="contact.png"
-        Route="SettingPage" />
+    <TabBar>
+        <Tab Title="Challenges">
+            <ShellContent
+                Title="Challenge"
+                ContentTemplate="{DataTemplate pages:ChallengeList}"
+                Icon="home.png"
+                Route="ChallengeList"
+                Shell.NavBarIsVisible="False" />
 
 
+            <Tab.Icon>
+
+                <FontImageSource
+                    FontFamily="{DynamicResource fonticons}"
+                    Glyph=""
+                    Size="24"
+                    Color="White" />
+
+            </Tab.Icon>
+        </Tab>
+        <Tab Title="Acheivements">
+            <ShellContent
+                Title="Acheivements"
+                ContentTemplate="{DataTemplate pages:StatusPage}"
+                Route="StatusPage"
+                Shell.NavBarIsVisible="False" />
+
+            <Tab.Icon>
+
+                <FontImageSource
+                    FontFamily="{DynamicResource fonticons}"
+                    Glyph=""
+                    Size="24"
+                    Color="White" />
+
+            </Tab.Icon>
+        </Tab>
+        <Tab Title="Device">
+            <ShellContent
+                Title="Device"
+                ContentTemplate="{DataTemplate pages:DeviceListPage}"
+                Icon="library.png"
+                Route="DeviceListPage"
+                Shell.NavBarIsVisible="False" />
+            <Tab.Icon>
+
+                <FontImageSource
+                    FontFamily="{DynamicResource fonticons}"
+                    Glyph=""
+                    Size="24"
+                    Color="White" />
+
+            </Tab.Icon>
+        </Tab>
+        <Tab Title="Settings">
+            <ShellContent
+                Title="Setting"
+                ContentTemplate="{DataTemplate pages:SettingPage}"
+                Icon="contact.png"
+                Route="SettingPage"
+                Shell.NavBarIsVisible="False" />
+            <Tab.Icon>
+
+                <FontImageSource
+                    FontFamily="{DynamicResource fonticons}"
+                    Glyph=""
+                    Size="24"
+                    Color="White" />
+
+            </Tab.Icon>
+        </Tab>
+    </TabBar>
 
 </Shell>
