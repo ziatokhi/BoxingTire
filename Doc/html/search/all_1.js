@@ -1,0 +1,26 @@
+var searchData=
+[
+  ['accelerometer_3',['Accelerometer',['../class_boxing_tire_1_1_app_1_1_models_1_1_accelerometer.html',1,'BoxingTire::App::Models']]],
+  ['accelerometer_2ecs_4',['Accelerometer.cs',['../_accelerometer_8cs.html',1,'']]],
+  ['accelerometerpage_5',['AccelerometerPage',['../class_boxing_tire_1_1_app_1_1_views_1_1_accelerometer_page.html',1,'BoxingTire::App::Views']]],
+  ['accelerometerpage_2examl_2ecs_6',['AccelerometerPage.xaml.cs',['../_accelerometer_page_8xaml_8cs.html',1,'']]],
+  ['accelerometerperiod_7',['AccelerometerPeriod',['../class_boxing_tire_1_1_app_1_1_services_1_1_accelerometer_service.html#a9b61aaeada5958bede017939fb520b24',1,'BoxingTire::App.Services.AccelerometerService.AccelerometerPeriod()'],['../class_boxing_tire_1_1_app_1_1_view_models_1_1_challenge01_view_model.html#ad3900a55fa4e3f9cc09e682c2e3ba0eb',1,'BoxingTire::App.ViewModels.Challenge01ViewModel.AccelerometerPeriod()']]],
+  ['accelerometerservice_8',['AccelerometerService',['../class_boxing_tire_1_1_app_1_1_services_1_1_accelerometer_service.html',1,'BoxingTire.App.Services.AccelerometerService'],['../class_boxing_tire_1_1_app_1_1_services_1_1_accelerometer_service.html#a57abd68c75aa95f5509a80f51c0774f6',1,'BoxingTire::App.Services.AccelerometerService.AccelerometerService()']]],
+  ['accelerometerservice_2ecs_9',['AccelerometerService.cs',['../_accelerometer_service_8cs.html',1,'']]],
+  ['accelerometerserviceid_10',['AccelerometerServiceId',['../class_boxing_tire_1_1_app_1_1_services_1_1_accelerometer_service.html#af7838df7c4ce1dc09ddb456f79c887e5',1,'BoxingTire::App.Services.AccelerometerService.AccelerometerServiceId()'],['../class_boxing_tire_1_1_app_1_1_view_models_1_1_challenge01_view_model.html#aadaed4e0e36fd1bfefa795b922fae1da',1,'BoxingTire::App.ViewModels.Challenge01ViewModel.AccelerometerServiceId()']]],
+  ['accesstoken_11',['AccessToken',['../class_boxing_tire_1_1_app_1_1_models_1_1_token.html#a8f83efcf679b0fb9c5ed5fc8d65aabb5',1,'BoxingTire::App.Models.Token.AccessToken()'],['../class_boxing_tire_1_1_domain_1_1_entities_1_1_token.html#a8c4c7e2d3b9ce7cd64be266185a181b5',1,'BoxingTire.Domain.Entities.Token.AccessToken()']]],
+  ['amicrobitservice_12',['AMicrobitService',['../class_boxing_tire_1_1_app_1_1_services_1_1_a_microbit_service.html',1,'BoxingTire.App.Services.AMicrobitService'],['../class_boxing_tire_1_1_app_1_1_services_1_1_a_microbit_service.html#a3c62c8a648f5cf14e40aea1b5d905b10',1,'BoxingTire::App.Services.AMicrobitService.AMicrobitService()']]],
+  ['amicrobitservice_2ecs_13',['AMicrobitService.cs',['../_a_microbit_service_8cs.html',1,'']]],
+  ['app_14',['App',['../class_boxing_tire_1_1_app_1_1_app.html',1,'BoxingTire::App']]],
+  ['app_2examl_2ecs_15',['App.xaml.cs',['../_app_8xaml_8cs.html',1,'']]],
+  ['appdelegate_16',['AppDelegate',['../class_boxing_tire_1_1_app_1_1i_o_s_1_1_app_delegate.html',1,'BoxingTire::App::iOS']]],
+  ['appdelegate_2ecs_17',['AppDelegate.cs',['../_app_delegate_8cs.html',1,'']]],
+  ['application_18',['Application',['../class_boxing_tire_1_1_app_1_1i_o_s_1_1_application.html',1,'BoxingTire::App::iOS']]],
+  ['appshell_19',['AppShell',['../class_boxing_tire_1_1_app_1_1_app_shell.html',1,'BoxingTire::App']]],
+  ['appshell_2examl_2ecs_20',['AppShell.xaml.cs',['../_app_shell_8xaml_8cs.html',1,'']]],
+  ['assemblyinfo_2ecs_21',['AssemblyInfo.cs',['../_assembly_info_8cs.html',1,'(Global Namespace)'],['../_android_2_properties_2_assembly_info_8cs.html',1,'(Global Namespace)'],['../i_o_s_2_properties_2_assembly_info_8cs.html',1,'(Global Namespace)']]],
+  ['authenticationcontroller_22',['AuthenticationController',['../class_boxing_tire_1_1_web_api_1_1_controllers_1_1_authentication_controller.html',1,'BoxingTire::WebApi::Controllers']]],
+  ['authenticationcontroller_2ecs_23',['AuthenticationController.cs',['../_authentication_controller_8cs.html',1,'']]],
+  ['avgforce_24',['AvgForce',['../class_boxing_tire_1_1_app_1_1_view_models_1_1_status_view_model.html#acd01884eaa11aece59f9245b7d8961c4',1,'BoxingTire::App::ViewModels::StatusViewModel']]],
+  ['avgspeed_25',['AvgSpeed',['../class_boxing_tire_1_1_app_1_1_view_models_1_1_status_view_model.html#a27542d7c9bd7bbfade9f230f1508f2ad',1,'BoxingTire::App::ViewModels::StatusViewModel']]]
+];
