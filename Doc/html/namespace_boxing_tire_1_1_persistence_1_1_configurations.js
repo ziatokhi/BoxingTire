@@ -1,0 +1,4 @@
+var namespace_boxing_tire_1_1_persistence_1_1_configurations =
+[
+    [ "UserAccountConfiguration", "class_boxing_tire_1_1_persistence_1_1_configurations_1_1_user_account_configuration.html", "class_boxing_tire_1_1_persistence_1_1_configurations_1_1_user_account_configuration" ]
+];

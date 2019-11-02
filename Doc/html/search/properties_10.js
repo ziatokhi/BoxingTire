@@ -1,0 +1,8 @@
+var searchData=
+[
+  ['updatedon_514',['UpdatedOn',['../class_boxing_tire_1_1_app_1_1_models_1_1_user_account.html#a117a9739d7aee0658387cc43b981f9b9',1,'BoxingTire::App.Models.UserAccount.UpdatedOn()'],['../class_boxing_tire_1_1_domain_1_1_entities_1_1_user_account.html#a3b7d8f66a02269e5ab77f6d49ca27822',1,'BoxingTire.Domain.Entities.UserAccount.UpdatedOn()']]],
+  ['useraccount_515',['UserAccount',['../class_boxing_tire_1_1_app_1_1_models_1_1_boxing_tire_db_context.html#a33be7f0dba60d3655f09d893aff6b8bd',1,'BoxingTire::App.Models.BoxingTireDbContext.UserAccount()'],['../class_boxing_tire_1_1_persistence_1_1_boxing_tire_db_context.html#a9ddb0f3fb3ecc3853686e9bd798a52ce',1,'BoxingTire.Persistence.BoxingTireDbContext.UserAccount()']]],
+  ['useraccount_5fid_516',['UserAccount_Id',['../class_boxing_tire_1_1_app_1_1_models_1_1_user_score.html#a4f6c7b8d7b33c2babe20a23cf579bfca',1,'BoxingTire::App::Models::UserScore']]],
+  ['username_517',['UserName',['../class_boxing_tire_1_1_app_1_1_models_1_1_token.html#a67ec919b26a085d9aa053889fdab9ec1',1,'BoxingTire::App.Models.Token.UserName()'],['../class_boxing_tire_1_1_app_1_1_view_models_1_1_login_view_model.html#ac27b9dd6b9b2f4a42adf7a9aea29f8e2',1,'BoxingTire::App.ViewModels.LoginViewModel.UserName()'],['../class_boxing_tire_1_1_app_1_1_view_models_1_1_sign_up_view_model.html#a4ba19658768c06b43b358442baf2ce0b',1,'BoxingTire::App.ViewModels.SignUpViewModel.UserName()'],['../class_boxing_tire_1_1_domain_1_1_entities_1_1_token.html#af70fa83159c7b28483181e19ba9d3ea5',1,'BoxingTire.Domain.Entities.Token.UserName()']]],
+  ['userscore_518',['UserScore',['../class_boxing_tire_1_1_app_1_1_models_1_1_boxing_tire_db_context.html#af42bb8a70c64b4910ef8922156351604',1,'BoxingTire::App::Models::BoxingTireDbContext']]]
+];

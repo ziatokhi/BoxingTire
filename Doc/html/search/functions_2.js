@@ -1,0 +1,9 @@
+var searchData=
+[
+  ['challenge01viewmodel_389',['Challenge01ViewModel',['../class_boxing_tire_1_1_app_1_1_view_models_1_1_challenge01_view_model.html#a23b2576d3fadf8dfded538edb171bcd7',1,'BoxingTire::App::ViewModels::Challenge01ViewModel']]],
+  ['challengelistviewmodel_390',['ChallengeListViewModel',['../class_boxing_tire_1_1_app_1_1_view_models_1_1_challenge_list_view_model.html#aefba4ed8aa433d06608f3a3500ed933b',1,'BoxingTire::App::ViewModels::ChallengeListViewModel']]],
+  ['configure_391',['Configure',['../class_boxing_tire_1_1_persistence_1_1_configurations_1_1_user_account_configuration.html#a849b417bcaa241e12297a22ca77b25d2',1,'BoxingTire.Persistence.Configurations.UserAccountConfiguration.Configure()'],['../class_boxing_tire_1_1_web_api_1_1_startup.html#a33ddb9784117caa0b52e9062ef397799',1,'BoxingTire.WebApi.Startup.Configure()'],['../class_boxing_tire_1_1_web_ui_1_1_startup.html#aa919ee5d4f94dce93fae31633dae96d4',1,'BoxingTire.WebUi.Startup.Configure()']]],
+  ['configureservices_392',['ConfigureServices',['../class_boxing_tire_1_1_web_api_1_1_startup.html#aef3f4804c2a5d82ba1835d58eb7ba694',1,'BoxingTire.WebApi.Startup.ConfigureServices()'],['../class_boxing_tire_1_1_web_ui_1_1_startup.html#acf1dcba73f5b37eaa4438b057fe5ec70',1,'BoxingTire.WebUi.Startup.ConfigureServices()']]],
+  ['connect_393',['Connect',['../class_boxing_tire_1_1_app_1_1_view_models_1_1_device_services_view_model.html#a09c391f10ce60c9625aecc9971c3c1de',1,'BoxingTire::App::ViewModels::DeviceServicesViewModel']]],
+  ['createhostbuilder_394',['CreateHostBuilder',['../class_boxing_tire_1_1_web_api_1_1_program.html#a08afb45219b92cc556d4ff83273c399d',1,'BoxingTire.WebApi.Program.CreateHostBuilder()'],['../class_boxing_tire_1_1_web_ui_1_1_program.html#a5b2ccd50911abddcbd75e7c4feeb704e',1,'BoxingTire.WebUi.Program.CreateHostBuilder()']]]
+];
