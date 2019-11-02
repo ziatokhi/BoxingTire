@@ -1,7 +1,7 @@
 ﻿using BoxingTire.App.Models;
 using BoxingTire.App.Services.Helpers;
-using Microsoft.EntityFrameworkCore;
 using Plugin.BLE.Abstractions.Contracts;
+using Plugin.SimpleAudioPlayer;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -19,7 +19,6 @@ namespace BoxingTire.App.ViewModels
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
-      
         public static Guid DeviceInformationServiceId = new Guid("0000180A00001000800000805F9B34FB");
         public static Guid TemperatureServiceId = new Guid("E95D6100251D470AA062FA1922DFA9A8");
         public static Guid AccelerometerServiceId = new Guid("E95D0753251D470AA062FA1922DFA9A8");
@@ -96,7 +95,7 @@ namespace BoxingTire.App.ViewModels
             }
         }
 
-      //  public Accelerometer _Accelerometer;
+        //  public Accelerometer _Accelerometer;
 
         public ICommand Start_Stop_Command { get; private set; }
 
@@ -105,7 +104,6 @@ namespace BoxingTire.App.ViewModels
 
         public bool IsSound = false;
         public bool IsVibrate = false;
-
 
         private bool _isRunning = false;
 
@@ -172,18 +170,15 @@ namespace BoxingTire.App.ViewModels
             }
         }
 
-
         public Challenge01ViewModel()
         {
-
             _StartTime = DateTime.Now;
 
             _ChallengeCategory_Id = App.ChallengeCategory_Id;
             //Title = "Challenge";
             Start_Stop_Command = new Command(Start_Stop_Click);
-           VibrateCommnd = new Command(Vibrate_click);
+            VibrateCommnd = new Command(Vibrate_click);
             SoundCommnd = new Command(Sound_click);
-
         }
 
         private void Sound_click(object obj)
@@ -198,7 +193,6 @@ namespace BoxingTire.App.ViewModels
             {
                 IsSound = false;
                 btn.BackgroundColor = Color.Black;
-
             }
         }
 
@@ -208,13 +202,12 @@ namespace BoxingTire.App.ViewModels
             if (IsVibrate == false)
             {
                 IsVibrate = true;
-                btn.BackgroundColor = Color.Blue ;
+                btn.BackgroundColor = Color.Blue;
             }
             else
             {
-                IsVibrate =false;
+                IsVibrate = false;
                 btn.BackgroundColor = Color.Black;
-
             }
         }
 
@@ -230,51 +223,45 @@ namespace BoxingTire.App.ViewModels
             }
             else
             {
-
                 btn.Text = "Start";
                 SaveData();
                 IsRunning = false;
             }
         }
 
-
-     async   void  SaveData()
+        private async void SaveData()
         {
-
             //save data to database ;
             if (Punch_Count + Punch_Force + Punch_Speed > 0)
-            { 
+            {
                 using (var db = new BoxingTireDbContext())
                 {
-
                     db.UserScore.Add(new UserScore
                     {
                         ChallengeCategory_Id = _ChallengeCategory_Id,
-                         Date =DateTime.Now,
-                          Force = Punch_Force,
-                           PunchCount = Punch_Count,
-                            Speed  = Punch_Speed,
-                             StartTime = _StartTime,
-                              StopTime = DateTime.Now,
-                               Id = Guid.NewGuid(),
-                               UserAccount_Id = App.UserId,
+                        Date = DateTime.Now,
+                        Force = Punch_Force,
+                        PunchCount = Punch_Count,
+                        Speed = Punch_Speed,
+                        StartTime = _StartTime,
+                        StopTime = DateTime.Now,
+                        Id = Guid.NewGuid(),
+                        UserAccount_Id = App.UserId,
+                    });
+                    await db.SaveChangesAsync();
 
-                    }) ;
-                 await  db.SaveChangesAsync();
-
-                 await   App.Current.MainPage.DisplayAlert("Training", $"You current Session Punchs {Punch_Count} Avg-Force {Punch_Force} Avg-Speed {Punch_Speed}", "Ok");
+                    await App.Current.MainPage.DisplayAlert("Training", $"You current Session Punchs {Punch_Count} Avg-Force {Punch_Force} Avg-Speed {Punch_Speed}", "Ok");
                 }
-
+            }
         }
-
-        }
-
 
         public async void LoadCharacteristics()
         {
-
             try
             {
+                var alertSound = CrossSimpleAudioPlayer.CreateSimpleAudioPlayer();
+                alertSound.Load("sound/punch.wav");
+
                 var s = await App.microbit.GetServicesAsync();
 
                 var ServiceInstance = s.Where(x => x.Id == AccelerometerServiceId).FirstOrDefault();
@@ -300,9 +287,6 @@ namespace BoxingTire.App.ViewModels
                             Y = ((double)rawY) / 1000.0;
                             Z = ((double)rawZ) / 1000.0;
 
-
-
-
                             if (X > 1)
                             {
                                 Punch_Count++;
@@ -316,14 +300,13 @@ namespace BoxingTire.App.ViewModels
                                     });
                                 }
 
+                                if (IsSound == true)
+                                {
+                                    alertSound.Play();
+                                }
 
-
+                                // System.Threading.Thread.Sleep(300);
                             }
-
-
-
-
-
 
                             Debug.Write($"{X} Y{Y} Z{Z}");
                             Debug.Write($"RAW X {rawX} Y{rawY} Z{rawZ}");
@@ -347,11 +330,9 @@ namespace BoxingTire.App.ViewModels
                 }
 
                 // StartUpdates();
-
             }
             catch (Exception ex)
             {
-
                 Debug.Write($"Error: {ex.Message}");
             }
         }

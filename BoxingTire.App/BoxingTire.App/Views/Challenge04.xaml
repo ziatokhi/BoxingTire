@@ -146,12 +146,14 @@
                     BorderWidth="1"
                     Command="{Binding VibrateCommnd}"
                     CommandParameter="{x:Reference btnVibrate}"
+                    CornerRadius="90"
+                    FontFamily="{DynamicResource fonticons}"
+                    FontSize="34"
                     HeightRequest="60"
                     HorizontalOptions="Center"
-                    Text="Vibrate"
-                    TextColor="{DynamicResource primaryTextColor}"
+                    Text="&#xf3cd;"
                     VerticalOptions="Center"
-                    WidthRequest="80" />
+                    WidthRequest="60" />
                 <Button
                     x:Name="btnSound"
                     Grid.Row="0"
@@ -162,12 +164,13 @@
                     BorderWidth="1"
                     Command="{Binding SoundCommnd}"
                     CommandParameter="{x:Reference btnSound}"
+                    FontFamily="{DynamicResource fonticons}"
+                    FontSize="34"
                     HeightRequest="60"
                     HorizontalOptions="Center"
-                    Text="Sound"
-                    TextColor="{DynamicResource primaryTextColor}"
+                    Text="&#xf028;"
                     VerticalOptions="Center"
-                    WidthRequest="80" />
+                    WidthRequest="60" />
             </Grid>
         </Frame>
     </ContentPage.Content>

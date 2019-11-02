@@ -6,74 +6,74 @@
     xmlns:d="http://xamarin.com/schemas/2014/forms/design"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:vm="clr-namespace:BoxingTire.App.ViewModels"
+    BackgroundImageSource="login"
     mc:Ignorable="d">
     <ContentPage.BindingContext>
         <vm:StatusViewModel />
     </ContentPage.BindingContext>
     <ContentPage.Content>
-        <Frame>
-            <Frame>
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition />
-                        <RowDefinition />
-                        <RowDefinition />
-                        <RowDefinition />
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
 
-                        <ColumnDefinition />
-                    </Grid.ColumnDefinitions>
+        <StackLayout
+            BackgroundColor="#90000000"
+            HorizontalOptions="CenterAndExpand"
+            VerticalOptions="CenterAndExpand">
 
-                    <Label
-                        Grid.Row="0"
-                        Grid.Column="0"
-                        FontSize="Large"
-                        Text="{Binding StatusUserName}" />
-                    <Label
-                        Grid.Row="0"
-                        Grid.Column="0"
-                        FontSize="Large"
-                        Text="Training Time" />
-                    <Label
-                        Grid.Row="0"
-                        Grid.Column="1"
-                        FontSize="Large"
-                        Text="{Binding TotalTrainingTime}" />
-                    <Label
-                        Grid.Row="1"
-                        Grid.Column="0"
-                        FontSize="Large"
-                        Text="Total Punch" />
-                    <Label
-                        Grid.Row="1"
-                        Grid.Column="1"
-                        FontSize="Large"
-                        Text="{Binding TotalPunch}" />
-                    <Label
-                        Grid.Row="2"
-                        Grid.Column="0"
-                        FontSize="Large"
-                        Text="Avg Force" />
-                    <Label
-                        Grid.Row="2"
-                        Grid.Column="1"
-                        FontSize="Large"
-                        Text="{Binding AvgForce}" />
-                    <Label
-                        Grid.Row="3"
-                        Grid.Column="0"
-                        FontSize="Large"
-                        Text="Avg Speed" />
-                    <Label
-                        Grid.Row="3"
-                        Grid.Column="1"
-                        FontSize="Large"
-                        Text="{Binding AvgSpeed}" />
+            <Label FontSize="Large" Text="{Binding StatusUserName}" />
+
+            <Label
+                FontSize="40"
+                HorizontalTextAlignment="Center"
+                Text="Time" />
 
 
-                </Grid>
-            </Frame>
-        </Frame>
+            <Label
+                FontSize="40"
+                HorizontalTextAlignment="Center"
+                Text="{Binding TotalTrainingTime, StringFormat='{0:hh : mm}'}" />
+            <BoxView
+                HeightRequest="2"
+                HorizontalOptions="CenterAndExpand"
+                WidthRequest="300"
+                Color="Silver" />
+
+            <Label
+                FontSize="40"
+                HorizontalTextAlignment="Center"
+                Text="Punch (hits)" />
+            <Label
+                FontSize="40"
+                HorizontalTextAlignment="Center"
+                Text="{Binding TotalPunch}" />
+            <BoxView
+                HeightRequest="2"
+                HorizontalOptions="CenterAndExpand"
+                WidthRequest="300"
+                Color="Silver" />
+
+            <Label
+                FontSize="40"
+                HorizontalTextAlignment="Center"
+                Text="Average Force" />
+            <Label
+                FontSize="40"
+                HorizontalTextAlignment="Center"
+                Text="{Binding AvgForce, StringFormat='{0:0}'}" />
+            <BoxView
+                HeightRequest="2"
+                HorizontalOptions="CenterAndExpand"
+                WidthRequest="300"
+                Color="Silver" />
+
+
+
+            <Label FontSize="40" HorizontalTextAlignment="Center">Average Speed (MPH)</Label>
+            <Label
+                FontSize="40"
+                HorizontalTextAlignment="Center"
+                Text="{Binding AvgSpeed}" />
+
+
+        </StackLayout>
+
     </ContentPage.Content>
 </ContentPage>

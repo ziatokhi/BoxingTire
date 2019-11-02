@@ -84,7 +84,7 @@
                     <Span
                         FontSize="Large"
                         Text="SignUp"
-                        TextColor="Yellow"
+                        TextColor="White"
                         TextDecorations="Underline">
                         <Span.GestureRecognizers>
                             <TapGestureRecognizer Command="{Binding SignUpCommand}" />

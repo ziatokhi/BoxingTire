@@ -78,7 +78,8 @@
                 Grid.Row="7"
                 Grid.Column="0"
                 Command="{Binding SignUpCommand}"
-                Text="Sign Up" />
+                Text="Sign Up"
+                VerticalOptions="Start" />
 
             <Label
                 Grid.Row="8"
@@ -90,7 +91,7 @@
                         <Span
                             FontSize="Large"
                             Text="Login"
-                            TextColor="Yellow"
+                            TextColor="White"
                             TextDecorations="Underline">
                             <Span.GestureRecognizers>
                                 <TapGestureRecognizer Command="{Binding LoginCommand}" />

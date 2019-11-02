@@ -37,12 +37,14 @@
             </Style>
             <Style TargetType="Button">
                 <Setter Property="CornerRadius" Value="30" />
-
+                <Setter Property="HeightRequest" Value="65" />
                 <Setter Property="BackgroundColor" Value="#9FFF0000" />
                 <Setter Property="TextColor" Value="White" />
 
             </Style>
-
+            <Style TargetType="Frame">
+                <Setter Property="BackgroundColor" Value="Black" />
+            </Style>
 
             <Style x:Key="frList" TargetType="Frame">
                 <Setter Property="BackgroundColor" Value="{StaticResource primaryLightColor}" />

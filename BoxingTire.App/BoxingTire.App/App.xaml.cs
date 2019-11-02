@@ -7,6 +7,7 @@ using BoxingTire.App.ViewModels;
 using Plugin.BLE.Abstractions.Contracts;
 using BoxingTire.App.Models;
 using System.Linq;
+ 
 
 namespace BoxingTire.App
 {
@@ -28,9 +29,10 @@ namespace BoxingTire.App
             //    MainPage = new Challenge01();
             //  MainPage = new MasterPageMenu();
 
-    DirectLoginUser();
+              DirectLoginUser();
 
-        //    MainPage = new LoginPage();
+       //    MainPage = new SoundPage(); 
+                //    MainPage = new LoginPage();
 
             // MainPage = new SignUpPage();
 

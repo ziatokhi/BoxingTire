@@ -6,13 +6,17 @@
     xmlns:d="http://xamarin.com/schemas/2014/forms/design"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:vm="clr-namespace:BoxingTire.App.ViewModels"
+    BackgroundColor="Black"
     mc:Ignorable="d">
     <ContentPage.BindingContext>
         <vm:DeviceListViewModel />
     </ContentPage.BindingContext>
     <ContentPage.Content>
         <StackLayout>
-
+            <Button
+                Margin="0,10,0,10"
+                Command="{Binding ScanCommand}"
+                Text="Scan  Microbit Devices" />
             <CollectionView
                 x:Name="CvList"
                 HorizontalOptions="FillAndExpand"
@@ -27,6 +31,7 @@
                 <CollectionView.EmptyView>
                     <StackLayout>
                         <Label
+                            FontSize="Title"
                             HorizontalOptions="CenterAndExpand"
                             Text="No Bluetooth Device Found!"
                             VerticalOptions="CenterAndExpand" />
@@ -43,37 +48,37 @@
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
 
-                        <Frame Padding="5" BackgroundColor="Black">
-                            <Frame Style="{DynamicResource frList}">
-                                <Grid Padding="10">
+                        <Frame Padding="5">
+                            <Frame BorderColor="Gray">
+                                <Grid Padding="5">
                                     <Grid.RowDefinitions>
                                         <RowDefinition />
-                                        <RowDefinition />
+
                                     </Grid.RowDefinitions>
                                     <Grid.ColumnDefinitions>
 
-                                        <ColumnDefinition />
+                                        <ColumnDefinition Width="*" />
+
+                                        <ColumnDefinition Width="*" />
 
 
                                     </Grid.ColumnDefinitions>
-                                    <Image
-                                        Grid.Row="0"
-                                        Grid.RowSpan="2"
-                                        Grid.Column="0"
-                                        Margin="-10"
-                                        Aspect="Fill"
-                                        HorizontalOptions="Fill"
-                                        Source="{Binding ImgSrc}"
-                                        VerticalOptions="FillAndExpand" />
+
 
                                     <Label
                                         Grid.Row="0"
-                                        Grid.RowSpan="2"
                                         Grid.Column="0"
                                         FontAttributes="Bold"
-                                        FontSize="Title"
+                                        FontSize="Large"
                                         Text="{Binding Name}"
-                                        TextColor="{DynamicResource primaryTextColor}"
+                                        VerticalTextAlignment="Center" />
+
+                                    <Label
+                                        Grid.Row="0"
+                                        Grid.Column="1"
+                                        FontAttributes="Bold"
+                                        HorizontalTextAlignment="End"
+                                        Text="{Binding State}"
                                         VerticalTextAlignment="Center" />
                                     <Grid.GestureRecognizers>
 
@@ -86,7 +91,7 @@
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
-            <Button Command="{Binding ScanCommand}" Text="Scan for Paired Microbit Devices" />
+
         </StackLayout>
 
     </ContentPage.Content>

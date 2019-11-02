@@ -32,7 +32,7 @@ namespace BoxingTire.App.ViewModels
             }
             catch(Exception ex)
             {
-                App.Current.MainPage.DisplayAlert("Error", ex.Message, "Ok");
+           //     App.Current.MainPage.DisplayAlert("Error", ex.Message, "Ok");
 
             }
              

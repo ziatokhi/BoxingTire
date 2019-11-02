@@ -45,20 +45,20 @@ namespace BoxingTire.App.ViewModels
 
         }
 
-     async  void GetData()
+      void GetData()
         {
             DeviceList.Clear();
-         await   _bluetoothLe.Adapter.StartScanningForDevicesAsync();
-            foreach (IDevice device in   _bluetoothLe.Adapter.DiscoveredDevices.Where(x=>x.Name !=null))
-            {
-                DeviceList.Add(device);
-            }
+         //await   _bluetoothLe.Adapter.StartScanningForDevicesAsync();
+         //   foreach (IDevice device in   _bluetoothLe.Adapter.DiscoveredDevices.Where(x=>x.Name!=null && x.Name.Contains("micro")))
+         //   {
+         //       DeviceList.Add(device);
+         //   }
 
             foreach (IDevice device in _bluetoothLe.Adapter.GetSystemConnectedOrPairedDevices())
             {
                 DeviceList.Add(device);
             }
-            await   _bluetoothLe.Adapter.StopScanningForDevicesAsync();
+           // await   _bluetoothLe.Adapter.StopScanningForDevicesAsync();
         }
 
         private void ScanClick(object obj)
@@ -70,10 +70,10 @@ namespace BoxingTire.App.ViewModels
         {
             App.microbit = obj as IDevice;
             await _bluetoothLe.Adapter.ConnectToDeviceAsync(App.microbit);
+            GetData();
 
-
-                await Application.Current.MainPage.Navigation.PopModalAsync();
-          //  await Shell.Current.Navigation("//views/ChallengeList");
+            //   await Application.Current.MainPage.Navigation.PopModalAsync();
+            //  await Shell.Current.Navigation("//views/ChallengeList");
         }
 
         /// <summary>
